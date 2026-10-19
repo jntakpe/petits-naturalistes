@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>De la cour au bout du monde · Maternelle du Grand Clos</title>
-<meta name="description" content="Appel aux dons pour les 96 enfants de la maternelle du Grand Clos, à Montargis : une ferme dans la cour, une sortie au Lumigny Safari Reserve et un imagier. Objectif 5 000 €, don déductible à 66 %.">
+<meta name="description" content="Appel aux dons pour les 95 élèves de l'École Maternelle du Grand Clos, à Montargis : une ferme dans la cour, une sortie au Parc Lumigny Safari Reserve et un imagier par classe. Objectif 4 000 €, collecte du 16 octobre au 24 décembre, don déductible à 66 %.">
 <meta name="theme-color" content="#FFC53D">
 <!-- Aperçu du lien sur WhatsApp, Facebook, SMS… -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:title" content="De la cour au bout du monde">
-<meta property="og:description" content="Aidez les 96 enfants de la maternelle du Grand Clos à découvrir les animaux. Objectif 5 000 €, don déductible à 66 %.">
+<meta property="og:title" content="À la rencontre des animaux sauvages et de la ferme">
+<meta property="og:description" content="Aidez les 95 élèves de la maternelle du Grand Clos à découvrir les animaux. Objectif 4 000 €, collecte jusqu'au 24 décembre, don déductible à 66 %.">
 <meta property="og:url" content="https://grandclos.montargis.org/">
 <meta property="og:image" content="https://grandclos.montargis.org/images/cour.jpg">
 <meta property="og:image:alt" content="Illustration : chèvre, mouton, lapin et poules dans la cour de l'école">
@@ -18,17 +18,21 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231F2858'/%3E%3Ccircle cx='20' cy='12' r='6' fill='%23FFC53D'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,700;1,700&family=Sniglet:wght@800&family=Varela+Round&display=swap">
 <style>
 /* Mise en page : une page unique qui suit le voyage des enfants, de la cour (jaune) jusqu'au don (marine).
-   Identité reprise de l'affiche : fond jaune soleil, titres marine, sur-titres rouge brique, cartes blanches.
+   Identité reprise de l'affiche : fond jaune soleil, titres marine en Sniglet, intertitres en Mali, texte en Varela Round,
+   accents rouge / vert / bleu des trois étapes, cartes blanches.
    Choix délibéré d'un seul thème clair, comme l'affiche imprimée. */
 :root {
   --sun: #FFC53D;        /* jaune de l'affiche */
   --sun-pale: #FFD978;   /* le grand rond pâle en haut à droite */
-  --navy: #1F2858;       /* titres et blocs sombres */
+  --navy: #1F2A5A;       /* titres et blocs sombres */
   --navy-2: #2B3870;     /* cartes sur fond marine */
-  --brick: #C9472B;      /* sur-titres et accents */
+  --brick: #C9472B;      /* sur-titres et petits accents (assez sombre pour rester lisible sur le jaune) */
+  --red: #E0573A;        /* « animaux sauvages », étape 1 */
+  --green: #3E9A4F;      /* « ferme », étape 2 */
+  --blue: #4A7FC1;       /* étape 3 */
   --paper: #FFFFFF;
   --cream: #FFF6E0;      /* encadrés doux */
   --ink: #2A3157;        /* texte courant */
@@ -36,8 +40,9 @@
   --on-navy: #E7EAF6;
   --line: #E9DDBC;
 
-  --f-display: "Lato", "Helvetica Neue", Arial, sans-serif;
-  --f-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+  --f-display: "Sniglet", "Varela Round", "Helvetica Neue", Arial, sans-serif;
+  --f-bold: "Mali", "Varela Round", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Varela Round", "Helvetica Neue", Arial, sans-serif;
 
   --r-card: 18px;
   --r-pill: 999px;
@@ -60,6 +65,13 @@ a { color: inherit; }
 img { max-width: 100%; }
 :focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 6px; }
 h1, h2, h3 { font-family: var(--f-display); color: var(--navy); line-height: 1.08; margin: 0; text-wrap: balance; }
+
+h3 { font-family: var(--f-bold); }
+/* Varela Round n'existe qu'en regular : tout ce qui est en gras passe en Mali, comme sur l'affiche */
+b, strong, label, legend, dt, .btn, .eyebrow, .pill, .brand, .nav a, .where, .who, .arrow, .deadline, .chip, .form-status { font-family: var(--f-bold); }
+/* Grands chiffres en Sniglet */
+label small, .field .opt { font-family: var(--f-body); }
+.fact b, .tier b, .tax b, .stat b, .big-96 b, .goal-top .raised, .step-no, .timeline b, .thanks b { font-family: var(--f-display); font-weight: 800; }
 p { margin: 0; }
 
 .band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
@@ -78,7 +90,7 @@ p { margin: 0; }
 
 .btn {
   display: inline-flex; align-items: center; gap: .55em; justify-content: center;
-  font: 900 17px/1 var(--f-body); text-decoration: none; cursor: pointer;
+  font: 700 17px/1 var(--f-bold); text-decoration: none; cursor: pointer;
   padding: 16px 26px; border-radius: var(--r-pill); border: 0;
   transition: transform .15s ease, box-shadow .15s ease;
 }
@@ -110,12 +122,18 @@ p { margin: 0; }
   content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%;
   background: var(--sun-pale); top: -260px; right: -160px; pointer-events: none;
 }
-.hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; padding-block: 56px 72px; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; padding-block: 56px 72px; }
 .hero-text { display: grid; gap: 22px; min-width: 0; justify-items: start; }
 .pill { background: var(--navy); color: var(--sun); padding: 9px 20px; border-radius: var(--r-pill); font-size: 13px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
-.hero h1 { font-size: clamp(46px, 7.4vw, 92px); font-weight: 900; letter-spacing: -.02em; }
-.hero h1 em { font-style: normal; display: block; }
-.hero .pitch { font-size: clamp(19px, 2.3vw, 24px); font-weight: 700; color: var(--brick); max-width: 30ch; line-height: 1.35; }
+.hero h1 { font-size: clamp(34px, 4.4vw, 56px); letter-spacing: -.01em; line-height: 1.04; }
+.hero h1 > span { display: block; } /* trois lignes, comme sur l'affiche */
+.c-red { color: var(--red); }
+.c-green { color: var(--green); }
+.banner {
+  background: var(--paper); color: var(--navy); font: italic 700 clamp(20px, 2.6vw, 28px)/1.2 var(--f-bold);
+  padding: 10px 22px; border-radius: 12px; transform: rotate(-1.2deg); box-shadow: 0 4px 0 rgba(31,42,90,.12);
+}
+.hero .pitch { font-family: var(--f-bold); font-size: clamp(18px, 2.1vw, 22px); font-weight: 700; color: var(--navy); max-width: 38ch; line-height: 1.4; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-meta { font-size: 15px; color: var(--ink-soft); }
 .hero-meta strong { color: var(--navy); }
@@ -170,8 +188,24 @@ p { margin: 0; }
   background: var(--navy); color: var(--sun); font-weight: 900; font-size: 18px; display: grid; place-items: center;
   box-shadow: 0 0 0 4px var(--paper);
 }
-.chapter.is-last .step-no { background: var(--sun); color: var(--navy); box-shadow: 0 0 0 4px var(--navy); }
+.chapter:nth-child(1) .step-no { background: var(--red); color: var(--paper); }
+.chapter:nth-child(2) .step-no { background: var(--green); color: var(--paper); }
+.chapter.is-last .step-no { background: var(--blue); color: var(--paper); box-shadow: 0 0 0 4px var(--navy); }
 .refs { font-size: 14px; font-style: italic; color: var(--ink-soft); max-width: 90ch; }
+
+/* Calendrier */
+.calendar { background: var(--paper); border-radius: var(--r-card); padding: 30px; display: grid; gap: 22px; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
+.calendar h3 { font-size: 24px; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.timeline li { display: grid; gap: 4px; align-content: start; padding-top: 16px; border-top: 4px solid var(--sun); }
+.timeline li:nth-child(3) { border-top-color: var(--green); }
+.timeline li:nth-child(4) { border-top-color: var(--blue); }
+.timeline b { font-size: 22px; color: var(--navy); line-height: 1.15; }
+.timeline strong { color: var(--brick); }
+.timeline span { font-size: 15px; color: var(--ink-soft); }
+.calendar-note { font-size: 15px; background: var(--cream); border-radius: 12px; padding: 14px 18px; }
+@media (max-width: 860px) { .timeline { grid-template-columns: 1fr 1fr; } .calendar { padding: 24px 20px; } }
+@media (max-width: 480px) { .timeline { grid-template-columns: 1fr; } }
 @media (max-width: 860px) {
   .journey { grid-template-columns: 1fr; gap: 20px; }
   .journey::before { left: 50%; right: auto; top: 0; bottom: 0; border-top: 0; border-left: 3px dashed var(--navy); }
@@ -186,6 +220,9 @@ p { margin: 0; }
 }
 .big-96 b { font-size: clamp(88px, 12vw, 132px); font-weight: 900; color: var(--navy); line-height: .9; }
 .big-96 span { font-weight: 900; color: var(--navy); }
+.quote { margin: 0; border-left: 6px solid var(--red); padding: 4px 0 4px 26px; display: grid; gap: 10px; max-width: 80ch; }
+.quote blockquote { margin: 0; font-size: clamp(18px, 2vw, 21px); color: var(--navy); line-height: 1.5; }
+.quote figcaption { font-family: var(--f-bold); font-weight: 700; color: var(--brick); font-size: 15px; }
 .bet { background: var(--navy); color: var(--on-navy); border-radius: var(--r-card); padding: 28px 32px; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
 .bet h3 { color: var(--sun); font-size: 24px; white-space: nowrap; }
 .bet p { font-size: 18px; }
@@ -199,17 +236,19 @@ p { margin: 0; }
 .goal-card { background: var(--paper); border-radius: var(--r-card); padding: 32px; display: grid; gap: 22px; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
 .goal-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; }
 .goal-top .raised { font-size: clamp(36px, 5vw, 52px); font-weight: 900; color: var(--navy); font-variant-numeric: tabular-nums; line-height: 1; }
-.goal-top .raised small { font-size: 18px; color: var(--ink-soft); font-weight: 700; }
+.goal-top .raised small { font-family: var(--f-bold); font-size: 18px; color: var(--ink-soft); font-weight: 700; }
 .goal-top .deadline { font-weight: 700; color: var(--brick); }
-.gauge { position: relative; padding-top: 30px; padding-bottom: 34px; }
+.gauge { position: relative; padding-top: 52px; }
 .gauge-track { height: 22px; border-radius: var(--r-pill); background: var(--cream); border: 2px solid var(--navy); overflow: hidden; }
 .gauge-fill { height: 100%; width: var(--pct, 0%); min-width: 0; background: repeating-linear-gradient(-45deg, var(--sun) 0 12px, #FFB21E 12px 24px); }
-.tick { position: absolute; top: 0; transform: translateX(-50%); display: grid; justify-items: center; font-size: 13px; font-weight: 900; color: var(--navy); white-space: nowrap; }
-.tick::after { content: ""; width: 3px; height: 54px; background: var(--navy); margin-top: 4px; border-radius: 2px; }
-.tick.t2000 { left: 40%; }
-.tick.t5000 { left: auto; right: 0; transform: none; justify-items: end; }
-.tick.t5000::after { margin-right: 10px; }
-.gauge-legend { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-soft); position: absolute; left: 0; right: 0; bottom: 0; }
+/* Seuils en bulles qui pointent vers la barre */
+.bubble { position: absolute; top: 0; transform: translateX(-50%); background: var(--navy); color: var(--paper); font: 700 14px var(--f-bold); padding: 6px 12px; border-radius: 10px; white-space: nowrap; }
+.bubble::after { content: ""; position: absolute; left: 50%; bottom: -7px; transform: translateX(-50%); border: 7px solid transparent; border-bottom: 0; border-top-color: var(--navy); }
+.bubble.b2000 { left: 50%; }
+.bubble.b4000 { left: auto; right: 0; transform: none; background: var(--green); }
+.bubble.b4000::after { left: auto; right: 14px; transform: none; border-top-color: var(--green); }
+@media (max-width: 560px) { .bubble-more { display: none; } }
+.gauge-legend { font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
 .update-note { font-size: 14px; color: var(--ink-soft); }
 
 .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -256,12 +295,21 @@ p { margin: 0; }
 .simulator { display: grid; gap: 10px; margin-top: 10px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.14); }
 .simulator label { font-size: 14px; font-weight: 700; }
 .sim-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.sim-row input { width: 120px; font: 900 20px var(--f-body); padding: 8px 12px; border-radius: 10px; border: 2px solid var(--sun); background: var(--paper); color: var(--navy); }
+.sim-row input { width: 120px; font: 700 20px var(--f-bold); padding: 8px 12px; border-radius: 10px; border: 2px solid var(--sun); background: var(--paper); color: var(--navy); }
 .sim-out { font-size: 15px; }
 .sim-out strong { color: var(--sun); font-size: 20px; }
 .qr-card { background: var(--paper); color: var(--navy); border-radius: var(--r-card); padding: 26px; display: grid; gap: 14px; justify-items: center; text-align: center; align-content: center; }
 .qr-box { width: 168px; height: 168px; border: 2px dashed #A7ADC8; border-radius: 14px; display: grid; place-items: center; color: #8A90AE; font-weight: 900; }
 .qr-card .btn { width: 100%; }
+.give .lead { color: var(--on-navy); }
+.thanks { background: var(--navy-2); border-radius: var(--r-card); padding: 28px; display: grid; gap: 18px; }
+.thanks h3 { color: var(--paper); font-size: 22px; }
+.thanks ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.thanks li { background: var(--navy); border-radius: 14px; padding: 18px 20px; display: grid; gap: 6px; align-content: start; }
+.thanks b { font-size: 30px; color: var(--sun); line-height: 1.1; }
+.thanks li p { font-size: 15px; }
+.thanks-note { font-size: 14px; }
+@media (max-width: 760px) { .thanks ol { grid-template-columns: 1fr; } .thanks { padding: 22px 18px; } }
 .reassure { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .reassure div { display: grid; gap: 4px; padding-top: 16px; border-top: 2px solid var(--sun); }
 .reassure strong { color: var(--paper); }
@@ -365,13 +413,14 @@ p { margin: 0; }
     <div class="wrap">
       <div class="hero-text">
         <span class="pill">Appel aux dons</span>
-        <h1>De la cour <em>au bout du monde</em></h1>
-        <p class="pitch">Réenchanter l'école des 96 enfants de la maternelle du Grand Clos, à Montargis, en leur faisant découvrir les animaux.</p>
+        <h1><span>À la rencontre des</span> <span class="c-red">animaux sauvages</span> <span>et de la <span class="c-green">ferme</span></span></h1>
+        <p class="banner">De la cour au bout du monde</p>
+        <p class="pitch">Réenchanter l'école pour les 95 élèves de l'École Maternelle du Grand Clos, à Montargis, en leur faisant découvrir les animaux.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#donner">Faire un don</a>
           <a class="btn btn-ghost" href="#projet">Découvrir le projet</a>
         </div>
-        <p class="hero-meta">Objectif <strong>5 000 €</strong> · don déductible à 66 % · jusqu'au <span class="ph">[DATE]</span></p>
+        <p class="hero-meta">Objectif <strong>4 000 €</strong> · don déductible à 66 % · collecte ouverte du <strong>16&nbsp;octobre au 24&nbsp;décembre</strong></p>
       </div>
       <div class="postcards" aria-hidden="true">
         <div class="postcard"><img src="images/cour.jpg" alt=""></div>
@@ -384,10 +433,10 @@ p { margin: 0; }
   <!-- CHIFFRES -->
   <section class="facts band" aria-label="Le projet en chiffres">
     <div class="wrap">
-      <div class="fact"><b>96</b><span>enfants de 3 à 6 ans</span></div>
-      <div class="fact"><b>3</b><span>étapes : la cour, le safari, l'imagier</span></div>
-      <div class="fact"><b>2 000 €</b><span>pour que la sortie ait lieu</span></div>
-      <div class="fact"><b>5 000 €</b><span>objectif complet</span></div>
+      <div class="fact"><b>95</b><span>élèves de 3 à 6 ans</span></div>
+      <div class="fact"><b>24 déc.</b><span>clôture de la collecte</span></div>
+      <div class="fact"><b>2 000 €</b><span>pour que la visite du parc ait lieu</span></div>
+      <div class="fact"><b>4 000 €</b><span>pour financer tout le projet</span></div>
     </div>
   </section>
 
@@ -396,8 +445,8 @@ p { margin: 0; }
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Le projet</span>
-        <h2>Rencontrer le vivant pour apprendre à prendre soin</h2>
-        <p class="lead">Approcher un animal, le nourrir, comprendre ses besoins, puis découvrir qu'il faut protéger ceux qui vivent loin. Les enfants apprennent qu'ils font partie d'un monde vivant, et l'attention qu'on doit à plus fragile que soi. L'école devient à leurs yeux le lieu où le monde s'ouvre.</p>
+        <h2>Rencontrer le vivant pour apprendre à en prendre soin</h2>
+        <p class="lead">Approcher un animal, le nourrir, comprendre ses besoins, puis découvrir qu'il faut protéger toutes les espèces : les enfants apprennent qu'ils font partie d'un monde vivant, et l'attention qu'on doit à plus fragile que soi. L'école devient à leurs yeux le lieu où le monde s'ouvre.</p>
       </div>
 
       <ol class="journey" style="list-style:none;margin:0;padding:0">
@@ -407,7 +456,7 @@ p { margin: 0; }
           <div class="chapter-body">
             <span class="where">Chapitre 1 · Ici</span>
             <h3>Apprivoiser</h3>
-            <p>Une ferme pédagogique vient une journée dans la cour de l'école : approcher les animaux, les nourrir, comprendre leurs besoins.</p>
+            <p>En avril 2027, une ferme pédagogique s'installe toute une journée dans la cour de récréation : approcher les animaux, les nourrir, les toucher, et participer à des ateliers comme la fabrication du fromage de chèvre.</p>
           </div>
         </li>
         <li class="chapter">
@@ -416,7 +465,7 @@ p { margin: 0; }
           <div class="chapter-body">
             <span class="where">Chapitre 2 · Là-bas</span>
             <h3>S'émerveiller</h3>
-            <p>Toute l'école part en car au Lumigny Safari Reserve, à la rencontre d'animaux du monde qu'il faut protéger.</p>
+            <p>En mai 2027, toute l'école part en car au Parc Lumigny Safari Reserve (77), à la rencontre de lions, de tigres et de lémuriens, des animaux du monde qu'il faut protéger.</p>
           </div>
         </li>
         <li class="chapter is-last">
@@ -425,12 +474,23 @@ p { margin: 0; }
           <div class="chapter-body">
             <span class="where">Chapitre 3 · Ensemble</span>
             <h3>Transmettre</h3>
-            <p>En classe, les enfants comparent l'ici et le là-bas, puis réalisent un imagier offert aux familles et à la ville.</p>
+            <p>En classe, les enfants comparent l'ici et l'ailleurs, puis chaque classe réalise son imagier pour garder une trace de ses découvertes.</p>
           </div>
         </li>
       </ol>
 
       <p class="refs">Programme de maternelle 2026 : découvrir le monde du vivant · Convention des droits de l'enfant, art. 29 : le respect du milieu naturel · ODD 4.7 de l'ONU : éducation au développement durable</p>
+
+      <div class="calendar">
+        <h3>Le calendrier du projet</h3>
+        <ol class="timeline">
+          <li><b>16 octobre 2026</b><strong>Ouverture de la collecte</strong><span>Sur la Trousse à projets</span></li>
+          <li><b>24 décembre 2026</b><strong>Clôture de la collecte</strong><span>Les fonds sont reversés à la coopérative de l'école</span></li>
+          <li><b>Printemps 2027</b><strong>La ferme, puis Lumigny</strong><span>La ferme dans la cour en avril, la sortie de toute l'école en mai</span></li>
+          <li><b>Fin de l'année</b><strong>Les imagiers</strong><span>Partagés avec les familles, notamment sur Prim'OT</span></li>
+        </ol>
+        <p class="calendar-note"><strong>Clubs et entreprises :</strong> un engagement avant la fin novembre permet d'afficher des premiers dons sur la page et d'entraîner les autres donateurs.</p>
+      </div>
     </div>
   </section>
 
@@ -441,11 +501,15 @@ p { margin: 0; }
         <div class="why-text">
           <span class="eyebrow">Les enfants du Grand Clos</span>
           <h2 style="font-size:clamp(32px,4.6vw,52px);font-weight:900">Pour que les enfants croient en leur école</h2>
-          <p>L'école maternelle du Grand Clos accueille 96 enfants de 3 à 6 ans, dans un bâtiment vieillissant qui n'a pas été conçu pour durer, en quartier prioritaire. La nouvelle école prévue dans le quartier n'ouvrira pas à temps pour eux.</p>
-          <p>Beaucoup de familles n'ont pas les moyens de financer les sorties et les projets qui font le souvenir d'une année d'école. Pour certains enfants, la sortie sera <strong>la première journée de découverte hors du quartier</strong>.</p>
+          <p>L'école maternelle du Grand Clos accueille 95 enfants de 3 à 6 ans, dans un bâtiment vieillissant qui n'a pas été conçu pour durer, en Quartier Prioritaire de la Politique de la Ville. La nouvelle école prévue dans le quartier n'ouvrira pas à temps pour eux.</p>
+          <p>Beaucoup de familles n'ont pas les moyens de financer en totalité les sorties et les projets qui font le souvenir d'une année scolaire. Pour certains enfants, la sortie sera <strong>la première journée de découverte hors du quartier</strong>.</p>
         </div>
-        <div class="big-96" aria-label="96 enfants de 3 à 6 ans"><b>96</b><span>enfants de 3 à 6 ans</span></div>
+        <div class="big-96" aria-label="95 enfants de 3 à 6 ans"><b>95</b><span>enfants de 3 à 6 ans</span></div>
       </div>
+      <figure class="quote">
+        <blockquote><p>« Les tout-petits se passionnent pour les animaux. En leur faisant découvrir différentes espèces animales, de la ferme à la faune sauvage, les enfants s'ouvrent au monde, à l'univers du vivant, intègrent des règles de respect de la biodiversité, d'empathie et de maîtrise de leurs propres gestes ou émotions. »</p></blockquote>
+        <figcaption>Mme Sonia Seigneur, directrice de l'école</figcaption>
+      </figure>
       <div class="bet">
         <h3>Le pari du projet</h3>
         <p>Ces enfants ont besoin de croire en l'école et d'y voir une chance pour eux. Réenchanter leur école par la découverte des animaux, pour les ouvrir au vivant, et à travers lui aux autres.</p>
@@ -458,19 +522,19 @@ p { margin: 0; }
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Budget et seuils</span>
-        <h2>Objectif : 5 000 €</h2>
+        <h2>Objectif : 4 000 €</h2>
       </div>
 
       <div class="goal-card">
         <div class="goal-top">
-          <div class="raised">0 € <small>collecté sur 5 000 €</small></div>
-          <div class="deadline">Jusqu'au <span class="ph">[DATE]</span></div>
+          <div class="raised">0 € <small>collecté sur 4 000 €</small></div>
+          <div class="deadline">Collecte ouverte jusqu'au 24&nbsp;décembre</div>
         </div>
-        <div class="gauge" style="--pct: 0%" role="img" aria-label="Jauge de collecte : 0 euro sur 5 000. Seuil minimum à 2 000 euros.">
-          <span class="tick t2000">2 000 € · la sortie a lieu</span>
-          <span class="tick t5000">5 000 €</span>
+        <div class="gauge" style="--pct: 0%" role="img" aria-label="Jauge de collecte : 0 euro sur 4 000. Seuil minimum à 2 000 euros.">
+          <span class="bubble b2000">2 000 €<span class="bubble-more"> · la visite du parc</span></span>
+          <span class="bubble b4000">4 000 €<span class="bubble-more"> · tout le projet</span></span>
           <div class="gauge-track"><div class="gauge-fill"></div></div>
-          <div class="gauge-legend"><span>0 €</span><span></span></div>
+          <div class="gauge-legend">0 €</div>
         </div>
         <p class="update-note">Montant à mettre à jour depuis la page de la Trousse à projets.</p>
       </div>
@@ -478,25 +542,23 @@ p { margin: 0; }
       <div class="tiers">
         <div class="tier tier-a">
           <b>Dès 2 000 €</b>
-          <h3>La ferme et la sortie ont lieu</h3>
-          <p>La coopérative de l'école complète avec toutes ses économies.</p>
+          <h3>Seule la visite libre du parc animalier a lieu</h3>
+          <p>Grâce notamment au complément des dons des familles à la coopérative scolaire.</p>
         </div>
         <div class="tier tier-b">
-          <b>À 5 000 €</b>
+          <b>À 4 000 €</b>
           <h3>La coopérative garde ses économies</h3>
-          <p>Pour le reste de l'année : remplacer livres et jouets usés, organiser d'autres sorties dans Montargis.</p>
+          <p>Projet financé dans son intégralité, y compris la venue de la ferme, avec toutes les interventions des professionnels et les ateliers pédagogiques organisés par les soigneurs.</p>
         </div>
       </div>
 
       <div class="budget">
         <h3>Budget détaillé</h3>
         <ul>
-          <li><span>Ferme pédagogique</span><span class="ph">[montant]</span></li>
-          <li><span>Matériel pour l'imagier</span><span class="ph">[montant]</span></li>
-          <li><span>Autocar aller-retour</span><span class="ph">[montant]</span></li>
-          <li><span>Frais de la plateforme (6,5 %)</span><span class="ph">[montant]</span></li>
-          <li><span>Entrées au parc</span><span class="ph">[montant]</span></li>
-          <li><span>Participation de la coopérative</span><span class="ph">[montant]</span></li>
+          <li><span>Ferme pédagogique</span><span>1 000 €</span></li>
+          <li><span>Autocar aller-retour</span><span>1 800 €</span></li>
+          <li><span>Sortie au parc</span><span>1 200 €</span></li>
+          <li><span>Frais de la plateforme (6,5 %)</span><span>260 € maximum</span></li>
         </ul>
       </div>
     </div>
@@ -520,7 +582,7 @@ p { margin: 0; }
         <li>
           <span class="arrow">2 · Objectif atteint</span>
           <span class="who">La Trousse à projets</span>
-          <span class="what">Verse les fonds à la coopérative de l'école.</span>
+          <span class="what">Plateforme de l'Éducation nationale et de l'OCCE, elle verse les fonds à la coopérative de l'école.</span>
         </li>
         <li class="coop">
           <span class="arrow">3 · Demande de reçu</span>
@@ -548,7 +610,8 @@ p { margin: 0; }
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Soutenir le projet</span>
-        <h2>Chaque don ouvre droit à un reçu fiscal</h2>
+        <h2>Un merci pour chaque don</h2>
+        <p class="lead">Chaque don ouvre droit à un reçu fiscal. Collecte ouverte du 16 octobre au 24 décembre.</p>
       </div>
 
       <div class="give-grid">
@@ -577,10 +640,20 @@ p { margin: 0; }
         </div>
       </div>
 
+      <div class="thanks">
+        <h3>Les remerciements, selon le don</h3>
+        <ol>
+          <li><b>Dès 50 €</b><p>Votre nom sur la liste des remerciements affichée à l'école.</p></li>
+          <li><b>Dès 200 €</b><p>Un message de remerciement avec la photo d'un imagier des enfants.</p></li>
+          <li><b>Dès 500 €</b><p>Une photo d'un imagier et un petit reportage photos de l'aventure des naturalistes du Grand Clos.</p></li>
+        </ol>
+        <p class="thanks-note">Chaque palier inclut les précédents. Les remerciements sont assurés par les parents élus.</p>
+      </div>
+
       <div class="reassure">
         <div><strong>Remboursé si l'objectif n'est pas atteint</strong><p>Si le seuil minimum n'est pas atteint, chaque donateur est remboursé.</p></div>
-        <div><strong>Même un petit don compte</strong><p>Chaque euro rapproche les 96 enfants de leur journée au parc.</p></div>
-        <div><strong>Partenaires remerciés</strong><p>Les partenaires sont cités dans la communication du projet et invités à la présentation de l'imagier en fin d'année.</p></div>
+        <div><strong>Même un petit don compte</strong><p>Chaque euro rapproche les 95 enfants de leur journée au parc.</p></div>
+        <div><strong>Un dispositif officiel</strong><p>Les dons sont reversés sur le compte de la coopérative de l'école, et l'OCCE du Loiret émet les reçus fiscaux.</p></div>
       </div>
       <p class="other-help">Vous ne pouvez pas donner ? <a href="#aider">Il y a d'autres façons d'aider</a></p>
     </div>
@@ -594,17 +667,16 @@ p { margin: 0; }
           <div class="section-head">
             <span class="eyebrow">Contact</span>
             <h2>Une question, une idée de partenariat ?</h2>
-            <p class="lead">Le projet est porté par la directrice de l'école et les parents d'élèves. On peut aider sans donner d'argent : un coup de main, du matériel, une affiche dans une vitrine.</p>
+            <p class="lead">Le projet est porté par l'équipe pédagogique, la directrice et les représentants de parents d'élèves. On peut aider sans donner d'argent : un coup de main, du matériel, une affiche dans une vitrine.</p>
           </div>
           <dl>
-            <dt>Contact</dt><dd>Virginie <span class="ph">[NOM]</span>, parent élue</dd>
-            <dt>Téléphone</dt><dd><span class="ph">[TÉLÉPHONE]</span></dd>
-            <dt>E-mail</dt><dd><span class="ph">[MAIL]</span></dd>
+            <dt>Contact</dt><dd>Les représentants de parents d'élèves</dd>
+            <dt>E-mail</dt><dd><a href="mailto:grandclos@montargis.org">grandclos@montargis.org</a></dd>
             <dt>Entreprises</dt><dd>Un dossier partenaires est disponible sur demande.</dd>
           </dl>
         </div>
 
-        <form class="help-card" id="aider" novalidate data-access-key="[CLÉ WEB3FORMS]">
+        <form class="help-card" id="aider" novalidate data-access-key="788fc172-02ff-46b9-ba1e-a84dfdb1dee3">
           <div class="help-head">
             <h3>Je veux aider</h3>
             <p>Dites-nous comment, l'équipe du projet vous recontacte.</p>
@@ -613,7 +685,7 @@ p { margin: 0; }
           <fieldset class="ways">
             <legend>Je peux…</legend>
             <label class="chip"><input type="checkbox" id="way-materiel" name="aide" value="Donner du matériel"> Donner du matériel <small>livres, jouets, crayons, papier</small></label>
-            <label class="chip"><input type="checkbox" id="way-main" name="aide" value="Donner un coup de main"> Donner un coup de main <small>ferme, imagier, présentation de fin d'année</small></label>
+            <label class="chip"><input type="checkbox" id="way-main" name="aide" value="Donner un coup de main"> Donner un coup de main <small>ferme, sortie, imagiers</small></label>
             <label class="chip"><input type="checkbox" id="way-relais" name="aide" value="Relayer la collecte"> Relayer la collecte <small>affiche en vitrine, réseaux, bouche-à-oreille</small></label>
             <label class="chip"><input type="checkbox" id="way-partenaire" name="aide" value="Devenir partenaire"> Devenir partenaire <small>entreprise, commerce, club, association</small></label>
           </fieldset>
@@ -657,13 +729,13 @@ p { margin: 0; }
 
 <footer class="foot band">
   <div class="wrap">
-    <span><strong>De la cour au bout du monde</strong> · Les petits naturalistes du Grand Clos</span>
+    <span><strong>À la rencontre des animaux sauvages et de la ferme · De la cour au bout du monde</strong> · Les naturalistes du Grand Clos</span>
     <span>École maternelle du Grand Clos, Montargis · Collecte via la Trousse à projets</span>
   </div>
 </footer>
 
 <div class="sticky-give" role="region" aria-label="Faire un don">
-  <div class="mini"><b>Objectif 5 000 €</b>Don déductible à 66 %</div>
+  <div class="mini"><b>Objectif 4 000 €</b>Jusqu'au 24 décembre · déductible à 66 %</div>
   <a class="btn btn-sun" href="#donner">Faire un don</a>
 </div>
 
@@ -682,7 +754,7 @@ p { margin: 0; }
 })();
 
 // Formulaire « Je veux aider » : envoi par e-mail via Web3Forms (https://web3forms.com).
-// Pour l'activer, remplacer [CLÉ WEB3FORMS] dans l'attribut data-access-key du formulaire.
+// La clé (attribut data-access-key du formulaire) est liée à grandclos@montargis.org.
 (function () {
   var form = document.getElementById('aider');
   var status = document.getElementById('help-status');
@@ -709,7 +781,7 @@ p { margin: 0; }
       return;
     }
     if (!key || key.charAt(0) === '[') {
-      show('Le formulaire n\'est pas encore relié à une adresse e-mail. En attendant, contactez Virginie directement.', 'error');
+      show('Le formulaire n\'est pas encore relié à une adresse e-mail. En attendant, écrivez à grandclos@montargis.org.', 'error');
       return;
     }
 
@@ -741,7 +813,7 @@ p { margin: 0; }
         show('Merci ! Votre message est bien parti. L\'équipe du projet vous recontacte rapidement.', 'ok');
       })
       .catch(function () {
-        show('Le message n\'a pas pu partir. Vérifiez votre connexion et réessayez, ou contactez Virginie directement.', 'error');
+        show('Le message n\'a pas pu partir. Vérifiez votre connexion et réessayez, ou écrivez à grandclos@montargis.org.', 'error');
       })
       .finally(function () {
         submit.disabled = false;
