@@ -21,24 +21,29 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,700;1,700&family=Sniglet:wght@800&family=Varela+Round&display=swap">
 <style>
 /* Mise en page : une page unique qui suit le voyage des enfants, de la cour (jaune) jusqu'au don (marine).
-   Identité reprise de l'affiche : fond jaune soleil, titres marine en Sniglet, intertitres en Mali, texte en Varela Round,
-   accents rouge / vert / bleu des trois étapes, cartes blanches.
-   Choix délibéré d'un seul thème clair, comme l'affiche imprimée. */
+   Identité reprise de l'affiche : fond jaune soleil, titres marine en Sniglet, intertitres en Mali, texte en Varela Round.
+   Choix délibéré d'un seul thème clair, comme l'affiche imprimée.
+   Une couleur, un rôle :
+   - cartes selon le fond : blanches sur le soleil, crème (ou soleil, pour un seul élément) sur le blanc, marine 2 sur le marine ;
+   - le marine plein est réservé au don (bandeau chiffres, section « Faire un don », barre collante) ;
+   - grands chiffres marine sur fond clair, soleil sur marine ;
+   - vert / rouge / bleu = les trois chapitres, en pastilles, filets et puces, jamais en petit texte ;
+   - brique = pastille des sur-titres (texte blanc) et erreurs, rien d'autre ;
+   - bouton principal marine sur surface claire, soleil sur surface marine. */
 :root {
-  --sun: #FFC53D;        /* jaune de l'affiche */
-  --sun-pale: #FFD978;   /* le grand rond pâle en haut à droite */
-  --navy: #1F2A5A;       /* titres et blocs sombres */
+  --sun: #FFC53D;        /* jaune de l'affiche, sol principal */
+  --sun-pale: #FFD978;   /* décor : grands ronds, rayures de la jauge, survols */
+  --navy: #1F2A5A;       /* titres, boutons, zone du don */
   --navy-2: #2B3870;     /* cartes sur fond marine */
-  --brick: #C9472B;      /* sur-titres et petits accents (assez sombre pour rester lisible sur le jaune) */
-  --red: #E0573A;        /* « animaux sauvages », étape 1 */
-  --green: #3E9A4F;      /* « ferme », étape 2 */
-  --blue: #4A7FC1;       /* étape 3 */
+  --brick: #C9472B;      /* pastille des sur-titres et erreurs */
+  --green: #3E9A4F;      /* la ferme, chapitre 1 */
+  --red: #E0573A;        /* les animaux sauvages, chapitre 2 */
+  --blue: #4A7FC1;       /* l'imagier, chapitre 3 */
   --paper: #FFFFFF;
-  --cream: #FFF6E0;      /* encadrés doux */
+  --cream: #FFF6E0;      /* cartes posées sur le blanc */
   --ink: #2A3157;        /* texte courant */
-  --ink-soft: #565D80;
+  --ink-soft: #565D80;   /* texte secondaire, sur blanc et crème seulement (trop pâle sur le soleil) */
   --on-navy: #E7EAF6;
-  --line: #E9DDBC;
 
   --f-display: "Sniglet", "Varela Round", "Helvetica Neue", Arial, sans-serif;
   --f-bold: "Mali", "Varela Round", "Helvetica Neue", Arial, sans-serif;
@@ -68,19 +73,22 @@ h1, h2, h3 { font-family: var(--f-display); color: var(--navy); line-height: 1.0
 
 h3 { font-family: var(--f-bold); }
 /* Varela Round n'existe qu'en regular : tout ce qui est en gras passe en Mali, comme sur l'affiche */
-b, strong, label, legend, dt, .btn, .eyebrow, .pill, .brand, .nav a, .where, .who, .arrow, .deadline, .chip, .form-status { font-family: var(--f-bold); }
+b, strong, label, legend, dt, .btn, .eyebrow, .pill, .brand, .nav a, .where, .who, .arrow, .deadline, .chip, .form-status, .gc-days, .link-btn { font-family: var(--f-bold); }
 /* Grands chiffres en Sniglet */
 label small, .field .opt { font-family: var(--f-body); }
-.fact b, .tier b, .tax b, .stat b, .big-96 b, .goal-top .raised, .step-no, .timeline b, .thanks b { font-family: var(--f-display); font-weight: 800; }
+.fact b, .tier b, .tax b, .stat b, .big-96 b, .goal-top .raised, .step-no, .timeline b, .thanks b, .gc-goal b, .amount b, .gc-cost strong, .next-big { font-family: var(--f-display); font-weight: 800; }
 p { margin: 0; }
 
 .band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .wrap { max-width: var(--wrap); margin: 0 auto; }
 
+/* Sur-titre en pastille brique, comme « Appel aux dons » sur l'affiche : le texte blanc reste lisible sur tous les fonds */
 .eyebrow {
-  font-size: 13px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; color: var(--brick);
+  justify-self: start; background: var(--brick); color: var(--paper); padding: 7px 16px; border-radius: var(--r-pill);
+  font-size: 13px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; line-height: 1.4;
 }
-.lead { font-size: clamp(18px, 2.2vw, 21px); color: var(--ink-soft); max-width: 62ch; }
+.lead { font-size: clamp(18px, 2.2vw, 21px); color: var(--ink); max-width: 62ch; }
+.on-white .lead { color: var(--ink-soft); }
 
 /* Champs à compléter */
 .ph {
@@ -94,11 +102,12 @@ p { margin: 0; }
   padding: 16px 26px; border-radius: var(--r-pill); border: 0;
   transition: transform .15s ease, box-shadow .15s ease;
 }
-.btn-primary { background: var(--navy); color: var(--sun); box-shadow: 0 4px 0 #0f1638; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #0f1638; }
+.btn-primary { background: var(--navy); color: var(--sun); box-shadow: 0 4px 0 var(--navy-2); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--navy-2); }
 .btn-ghost { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
 .btn-ghost:hover { background: var(--navy); color: var(--sun); }
-.btn-sun { background: var(--sun); color: var(--navy); box-shadow: 0 4px 0 #b9861a; }
+/* Bouton principal sur une surface marine */
+.btn-sun { background: var(--sun); color: var(--navy); box-shadow: 0 4px 0 var(--navy-2); }
 .btn-sun:hover { transform: translateY(-2px); }
 
 /* ---------- En-tête ---------- */
@@ -107,10 +116,10 @@ p { margin: 0; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; color: var(--navy); font-size: 16px; line-height: 1.15; }
 .brand-mark { width: 34px; height: 34px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; flex: none; }
 .brand-mark::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--sun); transform: translate(5px,-5px); }
-.brand small { display: block; font-weight: 700; font-size: 12px; color: var(--brick); letter-spacing: .04em; }
+.brand small { display: block; font-weight: 700; font-size: 12px; color: var(--ink); letter-spacing: .04em; }
 .nav { display: flex; align-items: center; gap: 22px; }
-.nav a:not(.btn) { text-decoration: none; font-weight: 700; color: var(--navy); font-size: 15px; white-space: nowrap; }
-.nav a:not(.btn):hover { color: var(--brick); }
+.nav a:not(.btn) { text-decoration: none; font-weight: 700; color: var(--navy); font-size: 15px; white-space: nowrap; text-underline-offset: 5px; }
+.nav a:not(.btn):hover { text-decoration: underline; }
 .nav .btn { padding: 11px 18px; font-size: 15px; white-space: nowrap; }
 /* Six liens tiennent sur une ligne à partir de 1150 px ; en dessous, seul le bouton de don reste */
 @media (max-width: 1150px) { .nav a:not(.btn) { display: none; } }
@@ -123,34 +132,114 @@ p { margin: 0; }
   content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%;
   background: var(--sun-pale); top: -260px; right: -160px; pointer-events: none;
 }
-.hero .wrap { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; padding-block: 56px 72px; }
-.hero-text { display: grid; gap: 22px; min-width: 0; justify-items: start; }
-.pill { background: var(--navy); color: var(--sun); padding: 9px 20px; border-radius: var(--r-pill); font-size: 13px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
-.hero h1 { font-size: clamp(34px, 4.4vw, 56px); letter-spacing: -.01em; line-height: 1.04; }
+/* Trois zones : la tête (pastille + titre) et le corps à gauche, la carte de don à droite.
+   Sur téléphone, la carte passe juste sous le titre. */
+.hero .wrap {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); grid-template-areas: "head card" "body card";
+  column-gap: 40px; row-gap: 22px; padding-block: 48px 64px;
+}
+.hero-head { grid-area: head; display: grid; gap: 22px; min-width: 0; justify-items: start; align-self: end; }
+.hero-body { grid-area: body; display: grid; gap: 22px; min-width: 0; justify-items: start; align-self: start; }
+.pill { background: var(--brick); color: var(--paper); padding: 9px 20px; border-radius: var(--r-pill); font-size: 13px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(34px, 4.4vw, 56px); letter-spacing: .01em; line-height: 1.08; }
 .hero h1 > span { display: block; } /* trois lignes, comme sur l'affiche */
+/* Mots en couleur détourés de marine, façon autocollant : rouge et vert seuls sur le jaune ne sont pas assez lisibles */
+.c-red, .c-green {
+  --o: 2px;
+  text-shadow: var(--o) 0 0 var(--navy), calc(-1 * var(--o)) 0 0 var(--navy), 0 var(--o) 0 var(--navy), 0 calc(-1 * var(--o)) 0 var(--navy),
+    var(--o) var(--o) 0 var(--navy), calc(-1 * var(--o)) calc(-1 * var(--o)) 0 var(--navy), var(--o) calc(-1 * var(--o)) 0 var(--navy), calc(-1 * var(--o)) var(--o) 0 var(--navy),
+    calc(2 * var(--o)) calc(2 * var(--o)) 0 var(--navy);
+}
 .c-red { color: var(--red); }
 .c-green { color: var(--green); }
+@media (max-width: 560px) { .c-red, .c-green { --o: 1.5px; } }
 .banner {
   background: var(--paper); color: var(--navy); font: italic 700 clamp(20px, 2.6vw, 28px)/1.2 var(--f-bold);
   padding: 10px 22px; border-radius: 12px; transform: rotate(-1.2deg); box-shadow: 0 4px 0 rgba(31,42,90,.12);
 }
 .hero .pitch { font-family: var(--f-bold); font-size: clamp(18px, 2.1vw, 22px); font-weight: 700; color: var(--navy); max-width: 38ch; line-height: 1.4; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
-.hero-meta { font-size: 15px; color: var(--ink-soft); }
-.hero-meta strong { color: var(--navy); }
+/* Les trois chapitres en vignettes sous le texte */
+.postcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; max-width: 540px; margin-top: 6px; }
+.postcard { position: relative; background: var(--paper); padding: 6px; border-radius: 14px; box-shadow: 0 8px 20px rgba(31,40,88,.14); }
+.postcard img { display: block; width: 100%; border-radius: 9px; aspect-ratio: 16 / 7; object-fit: cover; }
+/* Pastille du chapitre, de la même couleur que dans « Le projet » */
+.postcard::before {
+  position: absolute; top: -9px; left: -9px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--c); color: var(--paper); font: 800 14px var(--f-display); box-shadow: 0 0 0 3px var(--paper);
+}
+.postcard:nth-child(1) { transform: rotate(-2deg); --c: var(--green); }
+.postcard:nth-child(2) { transform: rotate(1.5deg); --c: var(--red); }
+.postcard:nth-child(3) { transform: rotate(-1deg); --c: var(--blue); }
+.postcard:nth-child(1)::before { content: "1"; }
+.postcard:nth-child(2)::before { content: "2"; }
+.postcard:nth-child(3)::before { content: "3"; }
 
-.postcards { position: relative; display: grid; gap: 14px; min-width: 0; }
-.postcard { background: var(--paper); padding: 8px; border-radius: var(--r-card); box-shadow: 0 10px 30px rgba(31,40,88,.14); }
-.postcard img { display: block; width: 100%; border-radius: 11px; aspect-ratio: 924 / 262; object-fit: cover; }
-.postcard:nth-child(1) { transform: rotate(-1.4deg); }
-.postcard:nth-child(2) { transform: rotate(1deg) translateX(18px); }
-.postcard:nth-child(3) { transform: rotate(-.6deg); }
+/* Carte de don : objectif, jauge, montants, coût réel, bouton */
+.give-card { grid-area: card; align-self: center; min-width: 0; background: var(--paper); border-radius: var(--r-card); padding: 28px; display: grid; gap: 18px; box-shadow: 0 10px 30px rgba(31,40,88,.14); }
+.gc-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+.gc-goal { display: grid; line-height: 1.1; }
+.gc-goal span { font-size: 14px; color: var(--ink-soft); }
+.gc-goal b { font-size: 36px; color: var(--navy); font-variant-numeric: tabular-nums; }
+.gc-days { background: var(--cream); color: var(--navy); font-weight: 700; font-size: 14px; padding: 7px 14px; border-radius: var(--r-pill); white-space: nowrap; }
+.gc-gauge { display: grid; gap: 6px; }
+.gc-gauge .gauge-track { height: 16px; }
+.gc-raised { font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
+.gc-raised b { color: var(--navy); }
+.gc-amounts { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.gc-amounts legend { font-weight: 700; color: var(--navy); font-size: 15px; padding: 0; margin-bottom: 10px; }
+.amount {
+  position: relative; display: grid; justify-items: center; align-content: center; gap: 6px; text-align: center; min-height: 76px; cursor: pointer;
+  padding: 14px 6px 12px; border-radius: 14px; background: var(--cream); border: 2px solid var(--cream); color: var(--navy);
+  transition: border-color .15s ease, background .15s ease;
+}
+.amount input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.amount b { font-size: 24px; line-height: 1; }
+.amount small { font-size: 12px; line-height: 1.2; color: var(--ink-soft); }
+.amount:hover { border-color: rgba(31,40,88,.35); }
+.amount:has(input:checked) { background: var(--navy); border-color: var(--navy); color: var(--sun); }
+.amount:has(input:checked) small { color: var(--on-navy); }
+.amount:has(input:focus-visible) { outline: 3px solid var(--navy); outline-offset: 2px; }
+.gc-cost { background: var(--cream); border-radius: 12px; padding: 12px 16px; font-size: 15px; line-height: 1.4; }
+.gc-cost strong { font-size: 20px; color: var(--navy); }
+.give-card .btn { width: 100%; font-size: 20px; padding: 20px 26px; }
+.gc-safe { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
+.gc-safe svg { flex: none; color: var(--navy); margin-top: 1px; }
 
 @media (max-width: 860px) {
-  .hero .wrap { grid-template-columns: 1fr; gap: 36px; padding-block: 36px 52px; }
-  .postcard:nth-child(2) { transform: rotate(1deg); }
+  .hero .wrap { grid-template-columns: 1fr; grid-template-areas: "head" "card" "body"; row-gap: 20px; padding-block: 28px 48px; }
+  .hero-head { gap: 16px; }
   .hero::before { width: 340px; height: 340px; top: -170px; right: -140px; }
 }
+/* Le titre tient sur trois lignes jusqu'aux petits téléphones */
+@media (max-width: 400px) { .hero h1 { font-size: 31px; } }
+@media (max-width: 560px) {
+  .give-card { padding: 20px; gap: 14px; }
+  .gc-goal b { font-size: 28px; }
+  .gc-amounts { gap: 8px; }
+  .amount { min-height: 70px; padding: 12px 4px 10px; }
+  .amount b { font-size: 21px; }
+  .amount small { font-size: 11px; }
+  .give-card .btn { font-size: 19px; padding: 18px 20px; }
+}
+
+/* ---------- Appels à l'action entre les sections ---------- */
+/* Carte blanche sur le soleil, crème sur le blanc ; un angle différent à chaque fois */
+.next-step { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; background: var(--paper); border-radius: var(--r-card); padding: 26px 30px; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
+.on-white .next-step { background: var(--cream); box-shadow: none; }
+.next-text { display: flex; align-items: center; gap: 22px; min-width: 0; flex: 1 1 420px; }
+.next-text p { font-size: 18px; max-width: 62ch; }
+.next-text strong { color: var(--navy); }
+.next-big { font-size: clamp(44px, 5vw, 56px); line-height: 1; color: var(--navy); flex: none; }
+.next-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn[hidden], .next-step[hidden] { display: none; }
+.help-card .next-step { background: var(--paper); }
+@media (max-width: 560px) {
+  .next-step { padding: 22px 20px; }
+  .next-text { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .next-actions, .next-actions .btn { width: 100%; }
+}
+/* Bouton qui ressemble à un lien (pied de page) */
+.link-btn { background: none; border: 0; padding: 0; color: inherit; font-size: inherit; line-height: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
 
 /* ---------- Bandeau chiffres ---------- */
 .facts { background: var(--navy); color: var(--on-navy); }
@@ -174,35 +263,34 @@ p { margin: 0; }
   /* l'itinéraire du car : pointillés de la cour jusqu'au bout du monde */
   content: ""; position: absolute; left: 8%; right: 8%; top: 104px; border-top: 3px dashed var(--navy); opacity: .35; z-index: 0;
 }
-.chapter { position: relative; z-index: 1; background: var(--paper); border-radius: var(--r-card); overflow: hidden; display: grid; grid-template-rows: auto 1fr; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
+/* Chaque chapitre porte sa couleur : vert la ferme, rouge les animaux sauvages, bleu l'imagier (comme le titre) */
+.chapter { --c: var(--navy); position: relative; z-index: 1; background: var(--paper); border-radius: var(--r-card); overflow: hidden; display: grid; grid-template-rows: auto 1fr; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
+.chapter:nth-child(1) { --c: var(--green); }
+.chapter:nth-child(2) { --c: var(--red); }
+.chapter:nth-child(3) { --c: var(--blue); }
 .chapter img { display: block; width: 100%; aspect-ratio: 528 / 150; object-fit: cover; }
-.chapter-body { padding: 22px 24px 26px; display: grid; gap: 8px; align-content: start; }
-.chapter .where { font-size: 13px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: var(--brick); }
+.chapter-body { padding: 22px 24px 26px; display: grid; gap: 8px; align-content: start; border-top: 6px solid var(--c); }
+.chapter .where { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: var(--navy); }
+.chapter .where::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex: none; }
 .chapter h3 { font-size: 28px; font-weight: 900; }
 .chapter p { color: var(--ink-soft); }
-.chapter.is-last { background: var(--navy); }
-.chapter.is-last h3 { color: var(--paper); }
-.chapter.is-last .where { color: var(--sun); }
-.chapter.is-last p { color: var(--on-navy); }
 .step-no {
   position: absolute; top: 12px; left: 12px; width: 40px; height: 40px; border-radius: 50%;
-  background: var(--navy); color: var(--sun); font-weight: 900; font-size: 18px; display: grid; place-items: center;
+  background: var(--c); color: var(--paper); font-weight: 900; font-size: 18px; display: grid; place-items: center;
   box-shadow: 0 0 0 4px var(--paper);
 }
-.chapter:nth-child(1) .step-no { background: var(--red); color: var(--paper); }
-.chapter:nth-child(2) .step-no { background: var(--green); color: var(--paper); }
-.chapter.is-last .step-no { background: var(--blue); color: var(--paper); box-shadow: 0 0 0 4px var(--navy); }
 .refs { font-size: 14px; font-style: italic; color: var(--ink-soft); max-width: 90ch; }
 
 /* Calendrier */
 .calendar { background: var(--paper); border-radius: var(--r-card); padding: 30px; display: grid; gap: 22px; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
 .calendar h3 { font-size: 24px; }
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.timeline li { display: grid; gap: 4px; align-content: start; padding-top: 16px; border-top: 4px solid var(--sun); }
-.timeline li:nth-child(3) { border-top-color: var(--green); }
+/* La collecte en marine (le don), puis les couleurs des chapitres : ferme en avril, Lumigny en mai, imagiers */
+.timeline li { display: grid; gap: 4px; align-content: start; padding-top: 16px; border-top: 4px solid var(--navy); }
+.timeline li:nth-child(3) { border-image: linear-gradient(90deg, var(--green) 0 50%, var(--red) 50% 100%) 1; }
 .timeline li:nth-child(4) { border-top-color: var(--blue); }
 .timeline b { font-size: 22px; color: var(--navy); line-height: 1.15; }
-.timeline strong { color: var(--brick); }
+.timeline strong { color: var(--navy); }
 .timeline span { font-size: 15px; color: var(--ink-soft); }
 .calendar-note { font-size: 15px; background: var(--cream); border-radius: 12px; padding: 14px 18px; }
 @media (max-width: 860px) { .timeline { grid-template-columns: 1fr 1fr; } .calendar { padding: 24px 20px; } }
@@ -221,65 +309,80 @@ p { margin: 0; }
 }
 .big-96 b { font-size: clamp(88px, 12vw, 132px); font-weight: 900; color: var(--navy); line-height: .9; }
 .big-96 span { font-weight: 900; color: var(--navy); }
-.quote { margin: 0; border-left: 6px solid var(--red); padding: 4px 0 4px 26px; display: grid; gap: 10px; max-width: 80ch; }
+.quote { margin: 0; border-left: 6px solid var(--navy); padding: 4px 0 4px 26px; display: grid; gap: 10px; max-width: 80ch; }
 .quote blockquote { margin: 0; font-size: clamp(18px, 2vw, 21px); color: var(--navy); line-height: 1.5; }
-.quote figcaption { font-family: var(--f-bold); font-weight: 700; color: var(--brick); font-size: 15px; }
-.bet { background: var(--navy); color: var(--on-navy); border-radius: var(--r-card); padding: 28px 32px; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
-.bet h3 { color: var(--sun); font-size: 24px; white-space: nowrap; }
+.quote figcaption { font-family: var(--f-bold); font-weight: 700; color: var(--ink-soft); font-size: 15px; }
+.bet { background: var(--cream); color: var(--ink); border-radius: var(--r-card); padding: 28px 32px; display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; }
+.bet h3 { font-size: 24px; white-space: nowrap; }
 .bet p { font-size: 18px; }
 @media (max-width: 860px) {
   .why { grid-template-columns: 1fr; gap: 32px; }
   .big-96 { order: -1; width: min(240px, 100%); }
   .bet { grid-template-columns: 1fr; gap: 10px; padding: 24px; }
+  .bet .btn { justify-self: start; margin-top: 8px; }
 }
+@media (max-width: 560px) { .bet .btn { justify-self: stretch; } }
 
 /* ---------- Objectif & jauge ---------- */
 .goal-card { background: var(--paper); border-radius: var(--r-card); padding: 32px; display: grid; gap: 22px; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
 .goal-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; }
 .goal-top .raised { font-size: clamp(36px, 5vw, 52px); font-weight: 900; color: var(--navy); font-variant-numeric: tabular-nums; line-height: 1; }
 .goal-top .raised small { font-family: var(--f-bold); font-size: 18px; color: var(--ink-soft); font-weight: 700; }
-.goal-top .deadline { font-weight: 700; color: var(--brick); }
+.goal-top .deadline { font-weight: 700; color: var(--navy); }
 .gauge { position: relative; padding-top: 52px; }
 .gauge-track { height: 22px; border-radius: var(--r-pill); background: var(--cream); border: 2px solid var(--navy); overflow: hidden; }
-.gauge-fill { height: 100%; width: var(--pct, 0%); min-width: 0; background: repeating-linear-gradient(-45deg, var(--sun) 0 12px, #FFB21E 12px 24px); }
-/* Seuils en bulles qui pointent vers la barre */
-.bubble { position: absolute; top: 0; transform: translateX(-50%); background: var(--navy); color: var(--paper); font: 700 14px var(--f-bold); padding: 6px 12px; border-radius: 10px; white-space: nowrap; }
+.gauge-fill { height: 100%; width: var(--pct, 0%); min-width: 0; background: repeating-linear-gradient(-45deg, var(--sun) 0 12px, var(--sun-pale) 12px 24px); }
+/* Seuils en bulles qui pointent vers la barre, avec la puce des chapitres financés */
+.bubble { position: absolute; top: 0; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: var(--paper); font: 700 14px var(--f-bold); padding: 6px 12px; border-radius: 10px; white-space: nowrap; }
+.bubble::before { content: ""; width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--red); }
 .bubble::after { content: ""; position: absolute; left: 50%; bottom: -7px; transform: translateX(-50%); border: 7px solid transparent; border-bottom: 0; border-top-color: var(--navy); }
 .bubble.b2000 { left: 50%; }
-.bubble.b4000 { left: auto; right: 0; transform: none; background: var(--green); }
-.bubble.b4000::after { left: auto; right: 14px; transform: none; border-top-color: var(--green); }
+.bubble.b4000 { left: auto; right: 0; transform: none; }
+.bubble.b4000::before { background: var(--green); box-shadow: 13px 0 0 var(--red), 26px 0 0 var(--blue); margin-right: 26px; }
+.bubble.b4000::after { left: auto; right: 14px; transform: none; }
 @media (max-width: 560px) { .bubble-more { display: none; } }
 .gauge-legend { font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
 .update-note { font-size: 14px; color: var(--ink-soft); }
 
 .tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.tier { border-radius: var(--r-card); padding: 28px 30px; display: grid; gap: 8px; align-content: start; }
-.tier b { font-size: clamp(36px, 4.6vw, 52px); font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+/* Paliers : cartes blanches sur le soleil, filet aux couleurs des chapitres financés */
+.tier { position: relative; overflow: hidden; background: var(--paper); border-radius: var(--r-card); padding: 34px 30px 30px; display: grid; gap: 8px; align-content: start; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
+.tier::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px; background: var(--red); }
+.tier-b::before { background: linear-gradient(90deg, var(--green) 0 33.3%, var(--red) 33.3% 66.6%, var(--blue) 66.6% 100%); }
+.tier b { font-size: clamp(36px, 4.6vw, 52px); font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; color: var(--navy); }
 .tier h3 { font-size: 20px; }
-.tier-a { background: var(--sun); }
-.tier-a b { color: var(--navy); }
-.tier-b { background: var(--navy); color: var(--on-navy); }
-.tier-b b, .tier-b h3 { color: var(--paper); }
+.tier p { color: var(--ink-soft); }
 @media (max-width: 760px) { .tiers { grid-template-columns: 1fr; } .goal-card { padding: 24px 20px; } }
 
-.budget { border: 2px dashed var(--line); background: var(--cream); border-radius: var(--r-card); padding: 26px 30px; display: grid; gap: 14px; }
+.budget { background: var(--paper); border-radius: var(--r-card); padding: 26px 30px; display: grid; gap: 14px; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
 .budget h3 { font-size: 19px; }
+/* Répartition des 4 000 € par chapitre : ferme en vert, autocar et parc en rouge */
+.budget-bar { display: flex; gap: 2px; height: 14px; border-radius: var(--r-pill); overflow: hidden; }
+.budget-bar span { background: var(--red); }
+.budget-bar span:first-child { background: var(--green); }
 .budget ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
-.budget li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.budget li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--cream); }
+.budget li::before { content: ""; width: 12px; height: 12px; border-radius: 50%; flex: none; background: var(--red); }
+.budget li:nth-child(1)::before { background: var(--green); }
+.budget li:nth-child(4)::before { background: none; border: 2px solid var(--ink-soft); box-sizing: border-box; }
+.budget li span:first-child { flex-grow: 1; }
+.budget li span:last-child { font-family: var(--f-bold); font-weight: 700; color: var(--navy); }
 .budget li .ph { color: var(--ink-soft); }
 @media (max-width: 760px) { .budget ul { grid-template-columns: 1fr; } .budget { padding: 22px 20px; } }
 
 /* ---------- Circuit de l'argent ---------- */
 .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: flow; list-style: none; margin: 0; padding: 0; }
-.flow li { background: var(--paper); border: 2px solid var(--navy); border-radius: var(--r-card); padding: 22px; display: grid; gap: 6px; align-content: start; position: relative; }
-.flow li.payer { background: var(--sun); border-color: var(--sun); }
-.flow li.coop { background: #FBD5CA; border-color: #FBD5CA; }
+/* Sur fond blanc : cartes crème, et « Vous » seul en soleil */
+.flow li { background: var(--cream); border-radius: var(--r-card); padding: 22px; display: grid; gap: 6px; align-content: start; position: relative; }
+.flow li.payer { background: var(--sun); }
 .flow .who { font-weight: 900; color: var(--navy); font-size: 18px; }
 .flow .what { font-size: 15px; color: var(--ink-soft); }
-.flow .arrow { font-size: 13px; font-weight: 900; color: var(--brick); letter-spacing: .04em; }
+.flow li.payer .what { color: var(--ink); }
+.flow .step-ico { width: 52px; height: 52px; border-radius: 50%; background: var(--navy); color: var(--sun); display: grid; place-items: center; margin-bottom: 8px; }
+.flow .arrow { font-size: 13px; font-weight: 900; color: var(--navy); letter-spacing: .04em; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .stat { background: var(--cream); border-radius: var(--r-card); padding: 20px 24px; }
-.stat b { display: block; font-size: 34px; font-weight: 900; color: var(--brick); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat b { display: block; font-size: 34px; font-weight: 900; color: var(--navy); font-variant-numeric: tabular-nums; line-height: 1.1; }
 .source { font-size: 13px; color: var(--ink-soft); }
 @media (max-width: 960px) { .flow { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .flow, .stats { grid-template-columns: 1fr; } }
@@ -287,7 +390,6 @@ p { margin: 0; }
 /* ---------- Donner ---------- */
 .give { background: var(--navy); color: var(--on-navy); }
 .give h2 { color: var(--paper); }
-.give .eyebrow { color: var(--sun); }
 .give-grid { display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 20px; }
 .tax { background: var(--navy-2); border-radius: var(--r-card); padding: 28px; display: grid; gap: 6px; align-content: start; }
 .tax b { font-size: 60px; font-weight: 900; color: var(--sun); line-height: 1; }
@@ -300,17 +402,17 @@ p { margin: 0; }
 .sim-out { font-size: 15px; }
 .sim-out strong { color: var(--sun); font-size: 20px; }
 .qr-card { background: var(--paper); color: var(--navy); border-radius: var(--r-card); padding: 26px; display: grid; gap: 14px; justify-items: center; text-align: center; align-content: center; }
-.qr-box { width: 168px; height: 168px; border: 2px dashed #A7ADC8; border-radius: 14px; display: grid; place-items: center; color: #8A90AE; font-weight: 900; }
+.qr-box { width: 168px; height: 168px; border: 2px dashed var(--ink-soft); border-radius: 14px; display: grid; place-items: center; color: var(--ink-soft); font-weight: 900; }
 .qr-card .btn { width: 100%; }
 .give .lead { color: var(--on-navy); }
-.thanks { background: var(--navy-2); border-radius: var(--r-card); padding: 28px; display: grid; gap: 18px; }
+.thanks { display: grid; gap: 16px; }
 .thanks h3 { color: var(--paper); font-size: 22px; }
 .thanks ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.thanks li { background: var(--navy); border-radius: 14px; padding: 18px 20px; display: grid; gap: 6px; align-content: start; }
+.thanks li { background: var(--navy-2); border-radius: 14px; padding: 18px 20px; display: grid; gap: 6px; align-content: start; }
 .thanks b { font-size: 30px; color: var(--sun); line-height: 1.1; }
 .thanks li p { font-size: 15px; }
 .thanks-note { font-size: 14px; }
-@media (max-width: 760px) { .thanks ol { grid-template-columns: 1fr; } .thanks { padding: 22px 18px; } }
+@media (max-width: 760px) { .thanks ol { grid-template-columns: 1fr; } }
 .reassure { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .reassure div { display: grid; gap: 4px; padding-top: 16px; border-top: 2px solid var(--sun); }
 .reassure strong { color: var(--paper); }
@@ -333,17 +435,12 @@ p { margin: 0; }
 .doc-preview img { display: block; height: 220px; width: auto; border-radius: 4px; box-shadow: 0 10px 24px rgba(31,40,88,.18); transform: rotate(-1.6deg); }
 .doc-preview.is-wide img { width: 290px; height: auto; transform: rotate(1.2deg); }
 .doc-body { padding: 22px 24px 10px; display: grid; gap: 8px; align-content: start; flex-grow: 1; grid-template-rows: auto auto 1fr auto; }
-.doc-for { font-size: 13px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: var(--brick); }
+.doc-for { font-size: 13px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: var(--navy); }
 .doc h3 { font-size: 26px; }
 .doc p { color: var(--ink-soft); }
 .doc .doc-meta { font-size: 14px; margin-top: 6px; }
 .doc .btn { align-self: flex-start; margin: 0 24px 26px; padding: 15px 22px; font-size: 16px; }
-.doc.is-press { background: var(--navy); }
-.doc.is-press .doc-preview { background: var(--navy-2); }
-.doc.is-press .doc-preview img { box-shadow: 0 10px 24px rgba(0,0,0,.3); transform: rotate(-.8deg); }
-.doc.is-press .doc-for { color: var(--sun); }
-.doc.is-press h3 { color: var(--paper); }
-.doc.is-press p { color: var(--on-navy); }
+.doc.is-press .doc-preview img { transform: rotate(-.8deg); }
 .ico { flex: none; }
 .docs-note { font-size: 15px; color: var(--navy); }
 .docs-note a { font-family: var(--f-bold); font-weight: 700; text-underline-offset: 4px; }
@@ -353,7 +450,7 @@ p { margin: 0; }
   .docs { grid-template-columns: 1fr; gap: 16px; }
   .doc { display: grid; grid-template-columns: 96px 1fr; gap: 14px; padding: 16px; align-items: center; }
   .doc-preview { width: 96px; height: 120px; border-radius: 12px; }
-  .doc-preview img, .doc.is-press .doc-preview img { height: 96px; border-radius: 3px; box-shadow: 0 6px 14px rgba(31,40,88,.18); transform: none; }
+  .doc-preview img { height: 96px; border-radius: 3px; box-shadow: 0 6px 14px rgba(31,40,88,.18); transform: none; }
   .doc-preview.is-wide img { width: 84px; height: auto; transform: none; }
   .doc-body { padding: 0; gap: 4px; min-width: 0; grid-template-rows: none; }
   .doc-for { font-size: 12px; }
@@ -373,18 +470,19 @@ p { margin: 0; }
 
 /* Liens vers les PDF : dossier partenaires (Contact) et affiche (formulaire) */
 .doc-link { display: flex; gap: 18px; align-items: center; background: var(--cream); border: 2px solid var(--navy); border-radius: var(--r-card); padding: 14px 18px; text-decoration: none; color: var(--navy); transition: background .15s ease; }
-.doc-link:hover { background: #FFEFC2; }
+.doc-link:hover { background: var(--sun-pale); }
 .doc-link img { display: block; width: 132px; height: auto; flex: none; border-radius: 4px; box-shadow: 0 6px 14px rgba(31,40,88,.18); }
 .doc-link-text { display: grid; gap: 2px; min-width: 0; flex-grow: 1; }
 .doc-link-text b { font-family: var(--f-bold); font-size: 20px; line-height: 1.2; }
 .doc-link-text span { font-size: 14px; color: var(--ink-soft); }
 .doc-link-ico { width: 44px; height: 44px; flex: none; border-radius: 50%; background: var(--navy); color: var(--sun); display: grid; place-items: center; }
-.poster-link { display: flex; gap: 14px; align-items: center; background: var(--navy); color: var(--on-navy); border-radius: 14px; padding: 12px 16px; text-decoration: none; }
-.poster-link:hover { background: var(--navy-2); }
-.poster-link img { display: block; height: 64px; width: auto; flex: none; border-radius: 3px; transform: rotate(-2deg); }
+/* Carte blanche posée sur le formulaire jaune */
+.poster-link { display: flex; gap: 14px; align-items: center; background: var(--paper); color: var(--ink); border-radius: 14px; padding: 12px 16px; text-decoration: none; transition: background .15s ease; }
+.poster-link:hover { background: var(--cream); }
+.poster-link img { display: block; height: 64px; width: auto; flex: none; border-radius: 3px; transform: rotate(-2deg); box-shadow: 0 4px 10px rgba(31,40,88,.18); }
 .poster-link-text { display: grid; min-width: 0; flex-grow: 1; font-size: 14px; line-height: 1.4; }
-.poster-link-text b { font-family: var(--f-bold); font-size: 17px; color: var(--sun); line-height: 1.25; }
-.poster-link .ico { color: var(--sun); }
+.poster-link-text b { font-family: var(--f-bold); font-size: 17px; color: var(--navy); line-height: 1.25; }
+.poster-link .ico { color: var(--navy); }
 @media (max-width: 560px) {
   .doc-link { gap: 14px; padding: 12px 14px; }
   .doc-link img { width: 88px; }
@@ -446,7 +544,10 @@ p { margin: 0; }
     padding-top: 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
     box-shadow: 0 -6px 20px rgba(15,22,56,.25);
+    transition: transform .25s ease, visibility 0s;
   }
+  /* Masquée tant que la carte de don du héros ou la section « Faire un don » est à l'écran */
+  .sticky-give.is-hidden { transform: translateY(110%); visibility: hidden; transition: transform .25s ease, visibility 0s .25s; }
   .sticky-give .mini { font-size: 13px; line-height: 1.3; min-width: 0; }
   .sticky-give .mini b { color: var(--sun); font-size: 15px; display: block; }
   .sticky-give .btn { padding: 12px 18px; font-size: 15px; flex: none; }
@@ -478,21 +579,39 @@ p { margin: 0; }
   <!-- HÉROS -->
   <section class="hero band">
     <div class="wrap">
-      <div class="hero-text">
+      <div class="hero-head">
         <span class="pill">Appel aux dons</span>
         <h1><span>À la rencontre des</span> <span class="c-red">animaux sauvages</span> <span>et de la <span class="c-green">ferme</span></span></h1>
+      </div>
+
+      <aside class="give-card" aria-label="Faire un don">
+        <div class="gc-top">
+          <div class="gc-goal"><span>Objectif</span><b>4 000 €</b></div>
+          <span class="gc-days js-days">Jusqu'au 24 décembre</span>
+        </div>
+        <div class="gc-gauge">
+          <div class="gauge-track js-gauge" style="--pct: 0%"><div class="gauge-fill"></div></div>
+          <p class="gc-raised"><b class="js-raised-zero">Soyez parmi les premiers donateurs</b><span class="js-raised-some" hidden><b class="js-raised">0 €</b> collectés</span> · la visite du parc a lieu dès 2 000 €</p>
+        </div>
+        <fieldset class="gc-amounts">
+          <legend>Je choisis mon don</legend>
+          <label class="amount"><input type="radio" name="gc-amount" value="20"><b>20 €</b><small>chaque euro compte</small></label>
+          <label class="amount"><input type="radio" name="gc-amount" value="42" checked><b>42 €</b><small>le projet d'un enfant</small></label>
+          <label class="amount"><input type="radio" name="gc-amount" value="100"><b>100 €</b><small>votre nom à l'école</small></label>
+        </fieldset>
+        <p class="gc-cost" aria-live="polite">Après la réduction d'impôt de 66&nbsp;%, ce don vous coûte <strong id="gc-cost">14,28 €</strong></p>
+        <a class="btn btn-primary" href="#donner" data-trousse><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Je donne <span id="gc-amount">42 €</span></a>
+        <p class="gc-safe"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Paiement sur la Trousse à projets, plateforme de l'Éducation nationale et de l'OCCE. Remboursé si l'objectif minimum n'est pas atteint.</p>
+      </aside>
+
+      <div class="hero-body">
         <p class="banner">De la cour au bout du monde</p>
         <p class="pitch">Réenchanter l'école pour les 95 élèves de l'École Maternelle du Grand Clos, à Montargis, en leur faisant découvrir les animaux.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#donner">Faire un don</a>
-          <a class="btn btn-ghost" href="#projet">Découvrir le projet</a>
+        <div class="postcards" aria-hidden="true">
+          <div class="postcard"><img src="images/cour.jpg" alt=""></div>
+          <div class="postcard"><img src="images/safari.jpg" alt=""></div>
+          <div class="postcard"><img src="images/imagier.jpg" alt=""></div>
         </div>
-        <p class="hero-meta">Objectif <strong>4 000 €</strong> · don déductible à 66 % · collecte ouverte du <strong>16&nbsp;octobre au 24&nbsp;décembre</strong></p>
-      </div>
-      <div class="postcards" aria-hidden="true">
-        <div class="postcard"><img src="images/cour.jpg" alt=""></div>
-        <div class="postcard"><img src="images/safari.jpg" alt=""></div>
-        <div class="postcard"><img src="images/imagier.jpg" alt=""></div>
       </div>
     </div>
   </section>
@@ -535,7 +654,7 @@ p { margin: 0; }
             <p>En mai 2027, toute l'école part en car au Parc Lumigny Safari Reserve (77), à la rencontre de lions, de tigres et de lémuriens, des animaux du monde qu'il faut protéger.</p>
           </div>
         </li>
-        <li class="chapter is-last">
+        <li class="chapter">
           <span class="step-no">3</span>
           <img src="images/imagier.jpg" alt="Illustration : pages d'un imagier dessiné par les enfants">
           <div class="chapter-body">
@@ -580,6 +699,7 @@ p { margin: 0; }
       <div class="bet">
         <h3>Le pari du projet</h3>
         <p>Ces enfants ont besoin de croire en l'école et d'y voir une chance pour eux. Réenchanter leur école par la découverte des animaux, pour les ouvrir au vivant, et à travers lui aux autres.</p>
+        <a class="btn btn-primary" href="#donner">Je donne pour les 95 enfants</a>
       </div>
     </div>
   </section>
@@ -594,10 +714,10 @@ p { margin: 0; }
 
       <div class="goal-card">
         <div class="goal-top">
-          <div class="raised">0 € <small>collecté sur 4 000 €</small></div>
+          <div class="raised"><span class="js-raised">0 €</span> <small>collecté sur 4 000 €</small></div>
           <div class="deadline">Collecte ouverte jusqu'au 24&nbsp;décembre</div>
         </div>
-        <div class="gauge" style="--pct: 0%" role="img" aria-label="Jauge de collecte : 0 euro sur 4 000. Seuil minimum à 2 000 euros.">
+        <div class="gauge js-gauge" style="--pct: 0%" role="img" aria-label="Jauge de collecte : 0 euro sur 4 000. Seuil minimum à 2 000 euros.">
           <span class="bubble b2000">2 000 €<span class="bubble-more"> · la visite du parc</span></span>
           <span class="bubble b4000">4 000 €<span class="bubble-more"> · tout le projet</span></span>
           <div class="gauge-track"><div class="gauge-fill"></div></div>
@@ -621,12 +741,22 @@ p { margin: 0; }
 
       <div class="budget">
         <h3>Budget détaillé</h3>
+        <div class="budget-bar" aria-hidden="true"><span style="flex: 1000"></span><span style="flex: 1800"></span><span style="flex: 1200"></span></div>
         <ul>
           <li><span>Ferme pédagogique</span><span>1 000 €</span></li>
           <li><span>Autocar aller-retour</span><span>1 800 €</span></li>
           <li><span>Sortie au parc</span><span>1 200 €</span></li>
           <li><span>Frais de la plateforme (6,5 %)</span><span>260 € maximum</span></li>
         </ul>
+      </div>
+
+      <!-- Appel à l'action : le coût par enfant (4 000 € pour 95 enfants) -->
+      <div class="next-step">
+        <div class="next-text">
+          <b class="next-big">42 €</b>
+          <p><strong>Le projet complet pour un enfant :</strong> la ferme dans la cour, sa place dans le car et sa journée au parc. Après réduction d'impôt, il vous coûte 14,28 €.</p>
+        </div>
+        <div class="next-actions"><a class="btn btn-primary" href="#donner">J'offre le projet à un enfant</a></div>
       </div>
     </div>
   </section>
@@ -642,21 +772,25 @@ p { margin: 0; }
 
       <ol class="flow">
         <li class="payer">
+          <span class="step-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>
           <span class="arrow">1 · Don en ligne</span>
           <span class="who">Vous</span>
           <span class="what">Familles, amis, commerçants, entreprises, clubs.</span>
         </li>
         <li>
+          <span class="step-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8"/><path d="M9 10l2 2 4-4"/></svg></span>
           <span class="arrow">2 · Objectif atteint</span>
           <span class="who">La Trousse à projets</span>
           <span class="what">Plateforme de l'Éducation nationale et de l'OCCE, elle verse les fonds à la coopérative de l'école.</span>
         </li>
         <li class="coop">
+          <span class="step-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 9v11h14V9"/><path d="M10 20v-5h4v5"/></svg></span>
           <span class="arrow">3 · Demande de reçu</span>
           <span class="who">La coop de l'école</span>
           <span class="what">Reçoit les fonds et finance le projet des enfants.</span>
         </li>
         <li>
+          <span class="step-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6"/><path d="M9 12h6"/></svg></span>
           <span class="arrow">4 · Reçu fiscal</span>
           <span class="who">L'OCCE du Loiret</span>
           <span class="what">Vous envoie votre reçu fiscal.</span>
@@ -669,6 +803,16 @@ p { margin: 0; }
         <div class="stat"><b>204 000</b>élèves bénéficiaires</div>
       </div>
       <p class="source">Chiffres de la Trousse à projets, septembre 2026 · <a href="https://www.trousseaprojets.fr" target="_blank" rel="noopener">trousseaprojets.fr</a> · <a href="https://www.occe.coop" target="_blank" rel="noopener">occe.coop</a></p>
+
+      <!-- Appel à l'action : la confiance -->
+      <div class="next-step">
+        <div class="next-text"><p><strong>Officiel, sécurisé, remboursé si l'objectif n'est pas atteint.</strong> Il ne manque plus que vous.</p></div>
+        <div class="next-actions">
+          <a class="btn btn-primary" href="#donner">Faire un don</a>
+          <!-- Affiché seulement quand TROUSSE_URL est renseigné dans le script -->
+          <a class="btn btn-ghost" href="#donner" data-trousse data-trousse-only hidden>Voir la collecte sur la Trousse à projets</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -702,7 +846,7 @@ p { margin: 0; }
         <div class="qr-card">
           <div class="qr-box">[QR CODE]</div>
           <p><strong>Scannez pour donner</strong><br>ou passez par le lien direct</p>
-          <a class="btn btn-sun" href="#donner" title="Lien de la Trousse à projets à ajouter">Donner sur la Trousse à projets</a>
+          <a class="btn btn-primary" href="#donner" data-trousse title="Lien de la Trousse à projets à ajouter">Donner sur la Trousse à projets</a>
           <span class="ph">[LIEN] à compléter</span>
         </div>
       </div>
@@ -764,9 +908,15 @@ p { margin: 0; }
             <p>Le projet, les chiffres clés et le contact presse, prêts à reprendre dans un article.</p>
             <p class="doc-meta">PDF · 2 pages · 80 Ko</p>
           </div>
-          <a class="btn btn-sun" href="documents/communique-de-presse-grand-clos.pdf" target="_blank" rel="noopener" aria-label="Télécharger le PDF : le communiqué de presse, 80 Ko"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>Télécharger le PDF</a>
+          <a class="btn btn-primary" href="documents/communique-de-presse-grand-clos.pdf" target="_blank" rel="noopener" aria-label="Télécharger le PDF : le communiqué de presse, 80 Ko"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>Télécharger le PDF</a>
         </li>
       </ul>
+
+      <!-- Appel à l'action : partager le site -->
+      <div class="next-step">
+        <div class="next-text"><p><strong>Le relais le plus simple :</strong> envoyer le lien du site à vos proches, sur WhatsApp, par SMS ou par e-mail.</p></div>
+        <div class="next-actions"><button class="btn btn-primary js-share" type="button"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4"/><path d="M15.4 6.5l-6.8 4"/></svg>Partager la collecte</button></div>
+      </div>
 
       <p class="docs-note">Besoin d'un autre format ou d'affiches imprimées ? Écrivez à <a href="mailto:grandclos@montargis.org">grandclos@montargis.org</a></p>
     </div>
@@ -845,6 +995,11 @@ p { margin: 0; }
             <p class="privacy">Vos coordonnées servent uniquement à vous répondre. Elles ne sont ni conservées ni transmises.</p>
           </div>
           <p class="form-status" id="help-status" role="status" aria-live="polite" hidden></p>
+          <!-- Après l'envoi : proposer de partager -->
+          <div class="next-step" id="help-after" hidden>
+            <div class="next-text"><p><strong>Et si vous partagiez aussi la collecte ?</strong> Plus elle circule, plus vite le car part.</p></div>
+            <div class="next-actions"><button class="btn btn-primary js-share" type="button">Partager la collecte</button></div>
+          </div>
         </form>
       </div>
     </div>
@@ -856,15 +1011,120 @@ p { margin: 0; }
     <span><strong>À la rencontre des animaux sauvages et de la ferme · De la cour au bout du monde</strong> · Les naturalistes du Grand Clos</span>
     <span>École maternelle du Grand Clos, Montargis · Collecte via la Trousse à projets</span>
     <span>Espace presse : <a href="documents/communique-de-presse-grand-clos.pdf" target="_blank" rel="noopener">Communiqué de presse (PDF)</a></span>
+    <span><a href="#donner">Faire un don</a> · <button class="link-btn js-share" type="button">Partager la collecte</button></span>
   </div>
 </footer>
 
-<div class="sticky-give" role="region" aria-label="Faire un don">
-  <div class="mini"><b>Objectif 4 000 €</b>Jusqu'au 24 décembre · déductible à 66 %</div>
+<div class="sticky-give is-hidden" role="region" aria-label="Faire un don">
+  <div class="mini"><b class="js-days">Jusqu'au 24 décembre</b>Objectif 4&nbsp;000&nbsp;€ · <span style="white-space:nowrap">−66&nbsp;% d'impôt</span></div>
   <a class="btn btn-sun" href="#donner">Faire un don</a>
 </div>
 
 <script>
+// ---------- À mettre à jour ----------
+var TROUSSE_URL = '';               // lien de la page de collecte sur la Trousse à projets
+var COLLECTE = 0;               // montant collecté en euros, relevé sur la Trousse à projets
+var FIN_COLLECTE = { an: 2026, mois: 12, jour: 24 };
+
+var euros = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
+var eurosRonds = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+// Liens vers la plateforme : la section « Faire un don » tant que le lien n'est pas connu
+(function () {
+  [].forEach.call(document.querySelectorAll('[data-trousse]'), function (a) {
+    if (TROUSSE_URL) {
+      a.href = TROUSSE_URL;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.hidden = false;
+    } else if (a.hasAttribute('data-trousse-only')) {
+      a.hidden = true;
+    }
+  });
+})();
+
+// Jauges du héros et de l'objectif, à partir de COLLECTE
+(function () {
+  var pct = Math.min(100, Math.max(0, COLLECTE) / 40);
+  [].forEach.call(document.querySelectorAll('.js-gauge'), function (g) {
+    g.style.setProperty('--pct', pct + '%');
+    if (g.hasAttribute('aria-label')) {
+      g.setAttribute('aria-label', 'Jauge de collecte : ' + Math.round(COLLECTE) + ' euros sur 4 000. Seuil minimum à 2 000 euros.');
+    }
+  });
+  [].forEach.call(document.querySelectorAll('.js-raised'), function (el) { el.textContent = eurosRonds.format(COLLECTE); });
+  [].forEach.call(document.querySelectorAll('.js-raised-some'), function (el) { el.hidden = COLLECTE <= 0; });
+  [].forEach.call(document.querySelectorAll('.js-raised-zero'), function (el) { el.hidden = COLLECTE > 0; });
+})();
+
+// Compte à rebours
+(function () {
+  // Jours calendaires entre aujourd'hui et le jour de clôture
+  var now = new Date();
+  var days = Math.round((Date.UTC(FIN_COLLECTE.an, FIN_COLLECTE.mois - 1, FIN_COLLECTE.jour) - Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())) / 864e5);
+  var text = days > 1 ? 'Plus que ' + days + ' jours' : days === 1 ? 'Clôture demain' : days === 0 ? 'Dernier jour !' : 'Collecte terminée';
+  [].forEach.call(document.querySelectorAll('.js-days'), function (el) { el.textContent = text; });
+})();
+
+// Carte de don : coût réel selon le montant choisi
+(function () {
+  var cost = document.getElementById('gc-cost');
+  var amount = document.getElementById('gc-amount');
+  [].forEach.call(document.querySelectorAll('input[name="gc-amount"]'), function (r) {
+    r.addEventListener('change', function () {
+      var v = parseFloat(r.value);
+      cost.textContent = euros.format(v * 0.34);
+      amount.textContent = v + ' €';
+    });
+  });
+})();
+
+// Partager la collecte : feuille de partage du téléphone, sinon copie du lien
+(function () {
+  var link = document.querySelector('link[rel="canonical"]');
+  var url = link ? link.href : location.href;
+  var text = 'Aidez les 95 élèves de la maternelle du Grand Clos à découvrir les animaux : objectif 4 000 € jusqu\'au 24 décembre, don déductible à 66 %.';
+
+  function flash(btn, msg) {
+    var label = btn.innerHTML;
+    btn.textContent = msg;
+    setTimeout(function () { btn.innerHTML = label; }, 2500);
+  }
+
+  [].forEach.call(document.querySelectorAll('.js-share'), function (btn) {
+    btn.addEventListener('click', function () {
+      if (navigator.share) {
+        navigator.share({ title: document.title, text: text, url: url }).catch(function () {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(
+          function () { flash(btn, 'Lien copié !'); },
+          function () { window.prompt('Copiez le lien du site :', url); }
+        );
+      } else {
+        window.prompt('Copiez le lien du site :', url);
+      }
+    });
+  });
+})();
+
+// Barre de don sur téléphone : inutile quand un bouton de don est déjà à l'écran
+(function () {
+  var bar = document.querySelector('.sticky-give');
+  var targets = [document.querySelector('.give-card'), document.getElementById('donner')];
+  if (!bar) return;
+  if (!('IntersectionObserver' in window)) { bar.classList.remove('is-hidden'); return; }
+  var onScreen = [];
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var i = onScreen.indexOf(e.target);
+      if (e.isIntersecting && i < 0) onScreen.push(e.target);
+      if (!e.isIntersecting && i >= 0) onScreen.splice(i, 1);
+    });
+    bar.classList.toggle('is-hidden', onScreen.length > 0);
+  });
+  targets.forEach(function (t) { if (t) io.observe(t); });
+})();
+
 (function () {
   var input = document.getElementById('sim-amount');
   var out = document.getElementById('sim-result');
@@ -936,6 +1196,7 @@ p { margin: 0; }
         if (!data.success) throw new Error(data.message);
         form.reset();
         show('Merci ! Votre message est bien parti. L\'équipe du projet vous recontacte rapidement.', 'ok');
+        document.getElementById('help-after').hidden = false;
       })
       .catch(function () {
         show('Le message n\'a pas pu partir. Vérifiez votre connexion et réessayez, ou écrivez à grandclos@montargis.org.', 'error');
