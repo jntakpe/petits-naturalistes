@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "de-la-cour-au-bout-du-monde",
+  "compatibility_date": "2026-10-01",
+  // Site statique : tout le contenu du dossier public/ est servi tel quel.
+  "assets": {
+    "directory": "./public"
+  },
+  // Adresse publique : Cloudflare crée l'enregistrement DNS et le certificat https.
+  "routes": [
+    { "pattern": "grandclos.montargis.org", "custom_domain": true }
+  ]
+}

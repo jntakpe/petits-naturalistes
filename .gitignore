@@ -1,0 +1,26 @@
+# Dépendances et fichiers générés par Wrangler
+node_modules/
+.wrangler/
+
+# Secrets et variables locales
+.dev.vars
+.env
+.env.*
+
+# Journaux
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# macOS
+.DS_Store
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Captures du navigateur de test (Playwright)
+.playwright-mcp/

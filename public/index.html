@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>De la cour au bout du monde · Maternelle du Grand Clos</title>
+<meta name="description" content="Appel aux dons pour les 96 enfants de la maternelle du Grand Clos, à Montargis : une ferme dans la cour, une sortie au Lumigny Safari Reserve et un imagier. Objectif 5 000 €, don déductible à 66 %.">
+<meta name="theme-color" content="#FFC53D">
+<!-- Aperçu du lien sur WhatsApp, Facebook, SMS… -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="De la cour au bout du monde">
+<meta property="og:description" content="Aidez les 96 enfants de la maternelle du Grand Clos à découvrir les animaux. Objectif 5 000 €, don déductible à 66 %.">
+<meta property="og:url" content="https://grandclos.montargis.org/">
+<meta property="og:image" content="https://grandclos.montargis.org/images/cour.jpg">
+<meta property="og:image:alt" content="Illustration : chèvre, mouton, lapin et poules dans la cour de l'école">
+<link rel="canonical" href="https://grandclos.montargis.org/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231F2858'/%3E%3Ccircle cx='20' cy='12' r='6' fill='%23FFC53D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap">
+<style>
+/* Mise en page : une page unique qui suit le voyage des enfants, de la cour (jaune) jusqu'au don (marine).
+   Identité reprise de l'affiche : fond jaune soleil, titres marine, sur-titres rouge brique, cartes blanches.
+   Choix délibéré d'un seul thème clair, comme l'affiche imprimée. */
+:root {
+  --sun: #FFC53D;        /* jaune de l'affiche */
+  --sun-pale: #FFD978;   /* le grand rond pâle en haut à droite */
+  --navy: #1F2858;       /* titres et blocs sombres */
+  --navy-2: #2B3870;     /* cartes sur fond marine */
+  --brick: #C9472B;      /* sur-titres et accents */
+  --paper: #FFFFFF;
+  --cream: #FFF6E0;      /* encadrés doux */
+  --ink: #2A3157;        /* texte courant */
+  --ink-soft: #565D80;
+  --on-navy: #E7EAF6;
+  --line: #E9DDBC;
+
+  --f-display: "Lato", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+
+  --r-card: 18px;
+  --r-pill: 999px;
+  --wrap: 1120px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+section[id], form[id] { scroll-margin-top: 72px; } /* l'en-tête collant ne masque pas le haut de la section visée */
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  margin: 0;
+  background: var(--sun);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+a { color: inherit; }
+img { max-width: 100%; }
+:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--f-display); color: var(--navy); line-height: 1.08; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+
+.band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: var(--wrap); margin: 0 auto; }
+
+.eyebrow {
+  font-size: 13px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; color: var(--brick);
+}
+.lead { font-size: clamp(18px, 2.2vw, 21px); color: var(--ink-soft); max-width: 62ch; }
+
+/* Champs à compléter */
+.ph {
+  display: inline-block; padding: 0 .45em; border: 1.5px dashed currentColor; border-radius: 6px;
+  font-weight: 700; opacity: .75; font-size: .92em; line-height: 1.5;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: .55em; justify-content: center;
+  font: 900 17px/1 var(--f-body); text-decoration: none; cursor: pointer;
+  padding: 16px 26px; border-radius: var(--r-pill); border: 0;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-primary { background: var(--navy); color: var(--sun); box-shadow: 0 4px 0 #0f1638; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #0f1638; }
+.btn-ghost { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+.btn-ghost:hover { background: var(--navy); color: var(--sun); }
+.btn-sun { background: var(--sun); color: var(--navy); box-shadow: 0 4px 0 #b9861a; }
+.btn-sun:hover { transform: translateY(-2px); }
+
+/* ---------- En-tête ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--sun); border-bottom: 1px solid rgba(31,40,88,.12); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; color: var(--navy); font-size: 16px; line-height: 1.15; }
+.brand-mark { width: 34px; height: 34px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; flex: none; }
+.brand-mark::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--sun); transform: translate(5px,-5px); }
+.brand small { display: block; font-weight: 700; font-size: 12px; color: var(--brick); letter-spacing: .04em; }
+.nav { display: flex; align-items: center; gap: 22px; }
+.nav a:not(.btn) { text-decoration: none; font-weight: 700; color: var(--navy); font-size: 15px; }
+.nav a:not(.btn):hover { color: var(--brick); }
+.nav .btn { padding: 11px 18px; font-size: 15px; white-space: nowrap; }
+@media (max-width: 860px) { .nav a:not(.btn) { display: none; } }
+/* Sur téléphone, la barre de don en bas d'écran remplace le bouton de l'en-tête */
+@media (max-width: 760px) { .nav { display: none; } }
+
+/* ---------- Héros ---------- */
+.hero { position: relative; overflow: hidden; }
+.hero::before {
+  content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%;
+  background: var(--sun-pale); top: -260px; right: -160px; pointer-events: none;
+}
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; padding-block: 56px 72px; }
+.hero-text { display: grid; gap: 22px; min-width: 0; justify-items: start; }
+.pill { background: var(--navy); color: var(--sun); padding: 9px 20px; border-radius: var(--r-pill); font-size: 13px; font-weight: 900; letter-spacing: .22em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(46px, 7.4vw, 92px); font-weight: 900; letter-spacing: -.02em; }
+.hero h1 em { font-style: normal; display: block; }
+.hero .pitch { font-size: clamp(19px, 2.3vw, 24px); font-weight: 700; color: var(--brick); max-width: 30ch; line-height: 1.35; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-meta { font-size: 15px; color: var(--ink-soft); }
+.hero-meta strong { color: var(--navy); }
+
+.postcards { position: relative; display: grid; gap: 14px; min-width: 0; }
+.postcard { background: var(--paper); padding: 8px; border-radius: var(--r-card); box-shadow: 0 10px 30px rgba(31,40,88,.14); }
+.postcard img { display: block; width: 100%; border-radius: 11px; aspect-ratio: 924 / 262; object-fit: cover; }
+.postcard:nth-child(1) { transform: rotate(-1.4deg); }
+.postcard:nth-child(2) { transform: rotate(1deg) translateX(18px); }
+.postcard:nth-child(3) { transform: rotate(-.6deg); }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; gap: 36px; padding-block: 36px 52px; }
+  .postcard:nth-child(2) { transform: rotate(1deg); }
+  .hero::before { width: 340px; height: 340px; top: -170px; right: -140px; }
+}
+
+/* ---------- Bandeau chiffres ---------- */
+.facts { background: var(--navy); color: var(--on-navy); }
+.facts .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-block: 28px; }
+.fact { display: grid; gap: 2px; }
+.fact b { font-size: clamp(28px, 3.6vw, 40px); font-weight: 900; color: var(--sun); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.fact span { font-size: 14px; }
+@media (max-width: 760px) { .facts .wrap { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- Sections communes ---------- */
+.section .wrap { padding-block: 88px; display: grid; gap: 40px; }
+.section-head { display: grid; gap: 14px; }
+.section-head h2 { font-size: clamp(32px, 4.6vw, 52px); font-weight: 900; letter-spacing: -.01em; max-width: 22ch; }
+.on-white { background: var(--paper); }
+.on-cream { background: var(--cream); }
+@media (max-width: 760px) { .section .wrap { padding-block: 60px; gap: 28px; } }
+
+/* ---------- Le voyage (3 chapitres) ---------- */
+.journey { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; position: relative; }
+.journey::before {
+  /* l'itinéraire du car : pointillés de la cour jusqu'au bout du monde */
+  content: ""; position: absolute; left: 8%; right: 8%; top: 104px; border-top: 3px dashed var(--navy); opacity: .35; z-index: 0;
+}
+.chapter { position: relative; z-index: 1; background: var(--paper); border-radius: var(--r-card); overflow: hidden; display: grid; grid-template-rows: auto 1fr; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
+.chapter img { display: block; width: 100%; aspect-ratio: 528 / 150; object-fit: cover; }
+.chapter-body { padding: 22px 24px 26px; display: grid; gap: 8px; align-content: start; }
+.chapter .where { font-size: 13px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: var(--brick); }
+.chapter h3 { font-size: 28px; font-weight: 900; }
+.chapter p { color: var(--ink-soft); }
+.chapter.is-last { background: var(--navy); }
+.chapter.is-last h3 { color: var(--paper); }
+.chapter.is-last .where { color: var(--sun); }
+.chapter.is-last p { color: var(--on-navy); }
+.step-no {
+  position: absolute; top: 12px; left: 12px; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--navy); color: var(--sun); font-weight: 900; font-size: 18px; display: grid; place-items: center;
+  box-shadow: 0 0 0 4px var(--paper);
+}
+.chapter.is-last .step-no { background: var(--sun); color: var(--navy); box-shadow: 0 0 0 4px var(--navy); }
+.refs { font-size: 14px; font-style: italic; color: var(--ink-soft); max-width: 90ch; }
+@media (max-width: 860px) {
+  .journey { grid-template-columns: 1fr; gap: 20px; }
+  .journey::before { left: 50%; right: auto; top: 0; bottom: 0; border-top: 0; border-left: 3px dashed var(--navy); }
+}
+
+/* ---------- Pourquoi ---------- */
+.why { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center; }
+.why-text { display: grid; gap: 18px; min-width: 0; font-size: 18px; }
+.big-96 {
+  justify-self: center; width: min(340px, 100%); aspect-ratio: 1; border-radius: 50%; background: var(--sun);
+  display: grid; place-content: center; text-align: center; gap: 4px;
+}
+.big-96 b { font-size: clamp(88px, 12vw, 132px); font-weight: 900; color: var(--navy); line-height: .9; }
+.big-96 span { font-weight: 900; color: var(--navy); }
+.bet { background: var(--navy); color: var(--on-navy); border-radius: var(--r-card); padding: 28px 32px; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
+.bet h3 { color: var(--sun); font-size: 24px; white-space: nowrap; }
+.bet p { font-size: 18px; }
+@media (max-width: 860px) {
+  .why { grid-template-columns: 1fr; gap: 32px; }
+  .big-96 { order: -1; width: min(240px, 100%); }
+  .bet { grid-template-columns: 1fr; gap: 10px; padding: 24px; }
+}
+
+/* ---------- Objectif & jauge ---------- */
+.goal-card { background: var(--paper); border-radius: var(--r-card); padding: 32px; display: grid; gap: 22px; box-shadow: 0 2px 0 rgba(31,40,88,.08); }
+.goal-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; }
+.goal-top .raised { font-size: clamp(36px, 5vw, 52px); font-weight: 900; color: var(--navy); font-variant-numeric: tabular-nums; line-height: 1; }
+.goal-top .raised small { font-size: 18px; color: var(--ink-soft); font-weight: 700; }
+.goal-top .deadline { font-weight: 700; color: var(--brick); }
+.gauge { position: relative; padding-top: 30px; padding-bottom: 34px; }
+.gauge-track { height: 22px; border-radius: var(--r-pill); background: var(--cream); border: 2px solid var(--navy); overflow: hidden; }
+.gauge-fill { height: 100%; width: var(--pct, 0%); min-width: 0; background: repeating-linear-gradient(-45deg, var(--sun) 0 12px, #FFB21E 12px 24px); }
+.tick { position: absolute; top: 0; transform: translateX(-50%); display: grid; justify-items: center; font-size: 13px; font-weight: 900; color: var(--navy); white-space: nowrap; }
+.tick::after { content: ""; width: 3px; height: 54px; background: var(--navy); margin-top: 4px; border-radius: 2px; }
+.tick.t2000 { left: 40%; }
+.tick.t5000 { left: auto; right: 0; transform: none; justify-items: end; }
+.tick.t5000::after { margin-right: 10px; }
+.gauge-legend { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-soft); position: absolute; left: 0; right: 0; bottom: 0; }
+.update-note { font-size: 14px; color: var(--ink-soft); }
+
+.tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.tier { border-radius: var(--r-card); padding: 28px 30px; display: grid; gap: 8px; align-content: start; }
+.tier b { font-size: clamp(36px, 4.6vw, 52px); font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+.tier h3 { font-size: 20px; }
+.tier-a { background: var(--sun); }
+.tier-a b { color: var(--navy); }
+.tier-b { background: var(--navy); color: var(--on-navy); }
+.tier-b b, .tier-b h3 { color: var(--paper); }
+@media (max-width: 760px) { .tiers { grid-template-columns: 1fr; } .goal-card { padding: 24px 20px; } }
+
+.budget { border: 2px dashed var(--line); background: var(--cream); border-radius: var(--r-card); padding: 26px 30px; display: grid; gap: 14px; }
+.budget h3 { font-size: 19px; }
+.budget ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+.budget li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.budget li .ph { color: var(--ink-soft); }
+@media (max-width: 760px) { .budget ul { grid-template-columns: 1fr; } .budget { padding: 22px 20px; } }
+
+/* ---------- Circuit de l'argent ---------- */
+.flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: flow; list-style: none; margin: 0; padding: 0; }
+.flow li { background: var(--paper); border: 2px solid var(--navy); border-radius: var(--r-card); padding: 22px; display: grid; gap: 6px; align-content: start; position: relative; }
+.flow li.payer { background: var(--sun); border-color: var(--sun); }
+.flow li.coop { background: #FBD5CA; border-color: #FBD5CA; }
+.flow .who { font-weight: 900; color: var(--navy); font-size: 18px; }
+.flow .what { font-size: 15px; color: var(--ink-soft); }
+.flow .arrow { font-size: 13px; font-weight: 900; color: var(--brick); letter-spacing: .04em; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.stat { background: var(--cream); border-radius: var(--r-card); padding: 20px 24px; }
+.stat b { display: block; font-size: 34px; font-weight: 900; color: var(--brick); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.source { font-size: 13px; color: var(--ink-soft); }
+@media (max-width: 960px) { .flow { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .flow, .stats { grid-template-columns: 1fr; } }
+
+/* ---------- Donner ---------- */
+.give { background: var(--navy); color: var(--on-navy); }
+.give h2 { color: var(--paper); }
+.give .eyebrow { color: var(--sun); }
+.give-grid { display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 20px; }
+.tax { background: var(--navy-2); border-radius: var(--r-card); padding: 28px; display: grid; gap: 6px; align-content: start; }
+.tax b { font-size: 60px; font-weight: 900; color: var(--sun); line-height: 1; }
+.tax h3 { color: var(--paper); font-size: 20px; }
+.tax p { font-size: 15px; }
+.simulator { display: grid; gap: 10px; margin-top: 10px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.14); }
+.simulator label { font-size: 14px; font-weight: 700; }
+.sim-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.sim-row input { width: 120px; font: 900 20px var(--f-body); padding: 8px 12px; border-radius: 10px; border: 2px solid var(--sun); background: var(--paper); color: var(--navy); }
+.sim-out { font-size: 15px; }
+.sim-out strong { color: var(--sun); font-size: 20px; }
+.qr-card { background: var(--paper); color: var(--navy); border-radius: var(--r-card); padding: 26px; display: grid; gap: 14px; justify-items: center; text-align: center; align-content: center; }
+.qr-box { width: 168px; height: 168px; border: 2px dashed #A7ADC8; border-radius: 14px; display: grid; place-items: center; color: #8A90AE; font-weight: 900; }
+.qr-card .btn { width: 100%; }
+.reassure { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.reassure div { display: grid; gap: 4px; padding-top: 16px; border-top: 2px solid var(--sun); }
+.reassure strong { color: var(--paper); }
+.reassure p { font-size: 15px; }
+.other-help { font-size: 17px; }
+.other-help a { color: var(--sun); font-weight: 900; text-underline-offset: 4px; }
+@media (max-width: 960px) { .give-grid { grid-template-columns: 1fr 1fr; } .qr-card { grid-column: 1 / -1; } }
+@media (max-width: 600px) { .give-grid, .reassure { grid-template-columns: 1fr; } }
+
+/* ---------- Contact & pied de page ---------- */
+.contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+.contact-side { display: grid; gap: 32px; min-width: 0; }
+.contact dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 12px 20px; font-size: 17px; }
+.contact dt { font-weight: 900; color: var(--navy); }
+.contact dd { margin: 0; min-width: 0; }
+@media (max-width: 860px) { .contact { grid-template-columns: 1fr; gap: 36px; } }
+
+/* Formulaire « Je veux aider » */
+.help-card { background: var(--sun); border-radius: var(--r-card); padding: 30px; display: grid; gap: 22px; min-width: 0; }
+.help-head { display: grid; gap: 4px; }
+.help-head h3 { font-size: clamp(28px, 3.4vw, 36px); font-weight: 900; }
+.help-head p { color: var(--navy); }
+.ways { border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; min-width: 0; }
+.ways legend { font-weight: 900; color: var(--navy); margin-bottom: 10px; padding: 0; }
+.chip {
+  display: grid; grid-template-columns: auto 1fr; column-gap: 10px; align-items: start; cursor: pointer;
+  background: var(--paper); border: 2px solid transparent; border-radius: 14px; padding: 12px 14px;
+  font-weight: 900; color: var(--navy); line-height: 1.3; transition: border-color .15s ease, background .15s ease;
+}
+.chip input { margin: 2px 0 0; width: 18px; height: 18px; accent-color: var(--navy); }
+.chip small { grid-column: 2; font-weight: 400; font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+.chip:hover { border-color: rgba(31,40,88,.35); }
+.chip:has(input:checked) { border-color: var(--navy); background: var(--cream); }
+.chip:has(input:focus-visible) { outline: 3px solid var(--navy); outline-offset: 2px; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field-wide { grid-column: 1 / -1; }
+.field label { font-weight: 900; color: var(--navy); font-size: 15px; }
+.field .opt { font-weight: 400; color: var(--ink-soft); font-size: 13px; }
+.field input, .field textarea {
+  width: 100%; font: 400 16px/1.4 var(--f-body); color: var(--ink); background: var(--paper);
+  border: 2px solid var(--paper); border-radius: 12px; padding: 11px 14px;
+}
+.field textarea { resize: vertical; min-height: 110px; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--navy); }
+.field input[aria-invalid="true"] { border-color: var(--brick); }
+.botcheck { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.help-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.help-actions .btn[disabled] { opacity: .6; cursor: wait; transform: none; }
+.privacy { font-size: 13px; color: var(--navy); max-width: 40ch; }
+.form-status { font-weight: 700; padding: 14px 16px; border-radius: 12px; background: var(--paper); color: var(--navy); }
+.form-status.is-error { color: var(--brick); }
+.form-status.is-ok { background: var(--navy); color: var(--sun); }
+@media (max-width: 560px) {
+  .help-card { padding: 22px 18px; }
+  .ways, .fields { grid-template-columns: 1fr; }
+}
+
+.foot { background: var(--sun); }
+.foot .wrap { padding-block: 32px 40px; display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; font-size: 14px; color: var(--navy); }
+
+/* Barre de don collante sur téléphone */
+.sticky-give { display: none; }
+@media (max-width: 760px) {
+  .sticky-give {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; gap: 12px; align-items: center; justify-content: space-between;
+    background: var(--navy); color: var(--on-navy);
+    padding-top: 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    box-shadow: 0 -6px 20px rgba(15,22,56,.25);
+  }
+  .sticky-give .mini { font-size: 13px; line-height: 1.3; min-width: 0; }
+  .sticky-give .mini b { color: var(--sun); font-size: 15px; display: block; }
+  .sticky-give .btn { padding: 12px 18px; font-size: 15px; flex: none; }
+  .foot .wrap { padding-bottom: 110px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top band">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>De la cour au bout du monde<small>Maternelle du Grand Clos · Montargis</small></span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#projet">Le projet</a>
+      <a href="#pourquoi">Pourquoi</a>
+      <a href="#objectif">Objectif</a>
+      <a href="#confiance">Comment ça marche</a>
+      <a href="#aider">Je veux aider</a>
+      <a class="btn btn-primary" href="#donner">Faire un don</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HÉROS -->
+  <section class="hero band">
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="pill">Appel aux dons</span>
+        <h1>De la cour <em>au bout du monde</em></h1>
+        <p class="pitch">Réenchanter l'école des 96 enfants de la maternelle du Grand Clos, à Montargis, en leur faisant découvrir les animaux.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#donner">Faire un don</a>
+          <a class="btn btn-ghost" href="#projet">Découvrir le projet</a>
+        </div>
+        <p class="hero-meta">Objectif <strong>5 000 €</strong> · don déductible à 66 % · jusqu'au <span class="ph">[DATE]</span></p>
+      </div>
+      <div class="postcards" aria-hidden="true">
+        <div class="postcard"><img src="images/cour.jpg" alt=""></div>
+        <div class="postcard"><img src="images/safari.jpg" alt=""></div>
+        <div class="postcard"><img src="images/imagier.jpg" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHIFFRES -->
+  <section class="facts band" aria-label="Le projet en chiffres">
+    <div class="wrap">
+      <div class="fact"><b>96</b><span>enfants de 3 à 6 ans</span></div>
+      <div class="fact"><b>3</b><span>étapes : la cour, le safari, l'imagier</span></div>
+      <div class="fact"><b>2 000 €</b><span>pour que la sortie ait lieu</span></div>
+      <div class="fact"><b>5 000 €</b><span>objectif complet</span></div>
+    </div>
+  </section>
+
+  <!-- LE PROJET -->
+  <section class="section band" id="projet">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Le projet</span>
+        <h2>Rencontrer le vivant pour apprendre à prendre soin</h2>
+        <p class="lead">Approcher un animal, le nourrir, comprendre ses besoins, puis découvrir qu'il faut protéger ceux qui vivent loin. Les enfants apprennent qu'ils font partie d'un monde vivant, et l'attention qu'on doit à plus fragile que soi. L'école devient à leurs yeux le lieu où le monde s'ouvre.</p>
+      </div>
+
+      <ol class="journey" style="list-style:none;margin:0;padding:0">
+        <li class="chapter">
+          <span class="step-no">1</span>
+          <img src="images/cour.jpg" alt="Illustration : chèvre, mouton, lapin et poules dans la cour de l'école">
+          <div class="chapter-body">
+            <span class="where">Chapitre 1 · Ici</span>
+            <h3>Apprivoiser</h3>
+            <p>Une ferme pédagogique vient une journée dans la cour de l'école : approcher les animaux, les nourrir, comprendre leurs besoins.</p>
+          </div>
+        </li>
+        <li class="chapter">
+          <span class="step-no">2</span>
+          <img src="images/safari.jpg" alt="Tigre, lion et jaguar du Lumigny Safari Reserve">
+          <div class="chapter-body">
+            <span class="where">Chapitre 2 · Là-bas</span>
+            <h3>S'émerveiller</h3>
+            <p>Toute l'école part en car au Lumigny Safari Reserve, à la rencontre d'animaux du monde qu'il faut protéger.</p>
+          </div>
+        </li>
+        <li class="chapter is-last">
+          <span class="step-no">3</span>
+          <img src="images/imagier.jpg" alt="Illustration : pages d'un imagier dessiné par les enfants">
+          <div class="chapter-body">
+            <span class="where">Chapitre 3 · Ensemble</span>
+            <h3>Transmettre</h3>
+            <p>En classe, les enfants comparent l'ici et le là-bas, puis réalisent un imagier offert aux familles et à la ville.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="refs">Programme de maternelle 2026 : découvrir le monde du vivant · Convention des droits de l'enfant, art. 29 : le respect du milieu naturel · ODD 4.7 de l'ONU : éducation au développement durable</p>
+    </div>
+  </section>
+
+  <!-- POURQUOI -->
+  <section class="section band on-white" id="pourquoi">
+    <div class="wrap">
+      <div class="why">
+        <div class="why-text">
+          <span class="eyebrow">Les enfants du Grand Clos</span>
+          <h2 style="font-size:clamp(32px,4.6vw,52px);font-weight:900">Pour que les enfants croient en leur école</h2>
+          <p>L'école maternelle du Grand Clos accueille 96 enfants de 3 à 6 ans, dans un bâtiment vieillissant qui n'a pas été conçu pour durer, en quartier prioritaire. La nouvelle école prévue dans le quartier n'ouvrira pas à temps pour eux.</p>
+          <p>Beaucoup de familles n'ont pas les moyens de financer les sorties et les projets qui font le souvenir d'une année d'école. Pour certains enfants, la sortie sera <strong>la première journée de découverte hors du quartier</strong>.</p>
+        </div>
+        <div class="big-96" aria-label="96 enfants de 3 à 6 ans"><b>96</b><span>enfants de 3 à 6 ans</span></div>
+      </div>
+      <div class="bet">
+        <h3>Le pari du projet</h3>
+        <p>Ces enfants ont besoin de croire en l'école et d'y voir une chance pour eux. Réenchanter leur école par la découverte des animaux, pour les ouvrir au vivant, et à travers lui aux autres.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECTIF -->
+  <section class="section band" id="objectif">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Budget et seuils</span>
+        <h2>Objectif : 5 000 €</h2>
+      </div>
+
+      <div class="goal-card">
+        <div class="goal-top">
+          <div class="raised">0 € <small>collecté sur 5 000 €</small></div>
+          <div class="deadline">Jusqu'au <span class="ph">[DATE]</span></div>
+        </div>
+        <div class="gauge" style="--pct: 0%" role="img" aria-label="Jauge de collecte : 0 euro sur 5 000. Seuil minimum à 2 000 euros.">
+          <span class="tick t2000">2 000 € · la sortie a lieu</span>
+          <span class="tick t5000">5 000 €</span>
+          <div class="gauge-track"><div class="gauge-fill"></div></div>
+          <div class="gauge-legend"><span>0 €</span><span></span></div>
+        </div>
+        <p class="update-note">Montant à mettre à jour depuis la page de la Trousse à projets.</p>
+      </div>
+
+      <div class="tiers">
+        <div class="tier tier-a">
+          <b>Dès 2 000 €</b>
+          <h3>La ferme et la sortie ont lieu</h3>
+          <p>La coopérative de l'école complète avec toutes ses économies.</p>
+        </div>
+        <div class="tier tier-b">
+          <b>À 5 000 €</b>
+          <h3>La coopérative garde ses économies</h3>
+          <p>Pour le reste de l'année : remplacer livres et jouets usés, organiser d'autres sorties dans Montargis.</p>
+        </div>
+      </div>
+
+      <div class="budget">
+        <h3>Budget détaillé</h3>
+        <ul>
+          <li><span>Ferme pédagogique</span><span class="ph">[montant]</span></li>
+          <li><span>Matériel pour l'imagier</span><span class="ph">[montant]</span></li>
+          <li><span>Autocar aller-retour</span><span class="ph">[montant]</span></li>
+          <li><span>Frais de la plateforme (6,5 %)</span><span class="ph">[montant]</span></li>
+          <li><span>Entrées au parc</span><span class="ph">[montant]</span></li>
+          <li><span>Participation de la coopérative</span><span class="ph">[montant]</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIANCE -->
+  <section class="section band on-white" id="confiance">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Le circuit de l'argent</span>
+        <h2>Un dispositif officiel et sécurisé</h2>
+        <p class="lead">La collecte passe par la Trousse à projets, la plateforme de financement participatif de l'Éducation nationale et de l'OCCE. L'argent va directement à la coopérative de l'école.</p>
+      </div>
+
+      <ol class="flow">
+        <li class="payer">
+          <span class="arrow">1 · Don en ligne</span>
+          <span class="who">Vous</span>
+          <span class="what">Familles, amis, commerçants, entreprises, clubs.</span>
+        </li>
+        <li>
+          <span class="arrow">2 · Objectif atteint</span>
+          <span class="who">La Trousse à projets</span>
+          <span class="what">Verse les fonds à la coopérative de l'école.</span>
+        </li>
+        <li class="coop">
+          <span class="arrow">3 · Demande de reçu</span>
+          <span class="who">La coop de l'école</span>
+          <span class="what">Reçoit les fonds et finance le projet des enfants.</span>
+        </li>
+        <li>
+          <span class="arrow">4 · Reçu fiscal</span>
+          <span class="who">L'OCCE du Loiret</span>
+          <span class="what">Vous envoie votre reçu fiscal.</span>
+        </li>
+      </ol>
+
+      <div class="stats">
+        <div class="stat"><b>13 M€</b>collectés</div>
+        <div class="stat"><b>10 200</b>projets réussis</div>
+        <div class="stat"><b>204 000</b>élèves bénéficiaires</div>
+      </div>
+      <p class="source">Chiffres de la Trousse à projets, septembre 2026 · <a href="https://www.trousseaprojets.fr" target="_blank" rel="noopener">trousseaprojets.fr</a> · <a href="https://www.occe.coop" target="_blank" rel="noopener">occe.coop</a></p>
+    </div>
+  </section>
+
+  <!-- DONNER -->
+  <section class="section band give" id="donner">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Soutenir le projet</span>
+        <h2>Chaque don ouvre droit à un reçu fiscal</h2>
+      </div>
+
+      <div class="give-grid">
+        <div class="tax">
+          <b>66 %</b>
+          <h3>pour un particulier</h3>
+          <p>de réduction d'impôt, pour un foyer imposable.</p>
+          <div class="simulator">
+            <label for="sim-amount">Si je donne</label>
+            <div class="sim-row">
+              <input id="sim-amount" type="number" inputmode="numeric" min="1" step="1" value="30" aria-describedby="sim-result"> <span>€</span>
+            </div>
+            <p class="sim-out" id="sim-result" aria-live="polite">Après réduction, il me coûte <strong>10,20 €</strong>.</p>
+          </div>
+        </div>
+        <div class="tax">
+          <b>60 %</b>
+          <h3>pour une entreprise</h3>
+          <p>dans les limites prévues par la loi : un don de 500 € revient à 200 €.</p>
+        </div>
+        <div class="qr-card">
+          <div class="qr-box">[QR CODE]</div>
+          <p><strong>Scannez pour donner</strong><br>ou passez par le lien direct</p>
+          <a class="btn btn-sun" href="#donner" title="Lien de la Trousse à projets à ajouter">Donner sur la Trousse à projets</a>
+          <span class="ph">[LIEN] à compléter</span>
+        </div>
+      </div>
+
+      <div class="reassure">
+        <div><strong>Remboursé si l'objectif n'est pas atteint</strong><p>Si le seuil minimum n'est pas atteint, chaque donateur est remboursé.</p></div>
+        <div><strong>Même un petit don compte</strong><p>Chaque euro rapproche les 96 enfants de leur journée au parc.</p></div>
+        <div><strong>Partenaires remerciés</strong><p>Les partenaires sont cités dans la communication du projet et invités à la présentation de l'imagier en fin d'année.</p></div>
+      </div>
+      <p class="other-help">Vous ne pouvez pas donner ? <a href="#aider">Il y a d'autres façons d'aider</a></p>
+    </div>
+  </section>
+
+  <!-- CONTACT / JE VEUX AIDER -->
+  <section class="section band on-white" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div class="contact-side">
+          <div class="section-head">
+            <span class="eyebrow">Contact</span>
+            <h2>Une question, une idée de partenariat ?</h2>
+            <p class="lead">Le projet est porté par la directrice de l'école et les parents d'élèves. On peut aider sans donner d'argent : un coup de main, du matériel, une affiche dans une vitrine.</p>
+          </div>
+          <dl>
+            <dt>Contact</dt><dd>Virginie <span class="ph">[NOM]</span>, parent élue</dd>
+            <dt>Téléphone</dt><dd><span class="ph">[TÉLÉPHONE]</span></dd>
+            <dt>E-mail</dt><dd><span class="ph">[MAIL]</span></dd>
+            <dt>Entreprises</dt><dd>Un dossier partenaires est disponible sur demande.</dd>
+          </dl>
+        </div>
+
+        <form class="help-card" id="aider" novalidate data-access-key="[CLÉ WEB3FORMS]">
+          <div class="help-head">
+            <h3>Je veux aider</h3>
+            <p>Dites-nous comment, l'équipe du projet vous recontacte.</p>
+          </div>
+
+          <fieldset class="ways">
+            <legend>Je peux…</legend>
+            <label class="chip"><input type="checkbox" id="way-materiel" name="aide" value="Donner du matériel"> Donner du matériel <small>livres, jouets, crayons, papier</small></label>
+            <label class="chip"><input type="checkbox" id="way-main" name="aide" value="Donner un coup de main"> Donner un coup de main <small>ferme, imagier, présentation de fin d'année</small></label>
+            <label class="chip"><input type="checkbox" id="way-relais" name="aide" value="Relayer la collecte"> Relayer la collecte <small>affiche en vitrine, réseaux, bouche-à-oreille</small></label>
+            <label class="chip"><input type="checkbox" id="way-partenaire" name="aide" value="Devenir partenaire"> Devenir partenaire <small>entreprise, commerce, club, association</small></label>
+          </fieldset>
+
+          <div class="fields">
+            <div class="field">
+              <label for="help-name">Nom et prénom</label>
+              <input id="help-name" name="nom" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="help-email">E-mail</label>
+              <input id="help-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="help-phone">Téléphone <span class="opt">facultatif</span></label>
+              <input id="help-phone" name="telephone" type="tel" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="help-org">Structure <span class="opt">facultatif</span></label>
+              <input id="help-org" name="structure" type="text" autocomplete="organization" placeholder="Entreprise, commerce, club…">
+            </div>
+            <div class="field field-wide">
+              <label for="help-message">Message</label>
+              <textarea id="help-message" name="message" rows="4" placeholder="Votre idée, votre question, vos disponibilités…"></textarea>
+            </div>
+          </div>
+
+          <!-- Piège à robots : invisible pour les visiteurs -->
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="help-actions">
+            <button class="btn btn-primary" type="submit" id="help-submit">Envoyer</button>
+            <p class="privacy">Vos coordonnées servent uniquement à vous répondre. Elles ne sont ni conservées ni transmises.</p>
+          </div>
+          <p class="form-status" id="help-status" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot band">
+  <div class="wrap">
+    <span><strong>De la cour au bout du monde</strong> · Les petits naturalistes du Grand Clos</span>
+    <span>École maternelle du Grand Clos, Montargis · Collecte via la Trousse à projets</span>
+  </div>
+</footer>
+
+<div class="sticky-give" role="region" aria-label="Faire un don">
+  <div class="mini"><b>Objectif 5 000 €</b>Don déductible à 66 %</div>
+  <a class="btn btn-sun" href="#donner">Faire un don</a>
+</div>
+
+<script>
+(function () {
+  var input = document.getElementById('sim-amount');
+  var out = document.getElementById('sim-result');
+  var fmt = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
+  function update() {
+    var v = parseFloat(input.value);
+    if (!isFinite(v) || v <= 0) { out.textContent = 'Indiquez un montant pour voir le coût réel.'; return; }
+    out.innerHTML = 'Après réduction, il me coûte <strong>' + fmt.format(v * 0.34) + '</strong>.';
+  }
+  input.addEventListener('input', update);
+  update();
+})();
+
+// Formulaire « Je veux aider » : envoi par e-mail via Web3Forms (https://web3forms.com).
+// Pour l'activer, remplacer [CLÉ WEB3FORMS] dans l'attribut data-access-key du formulaire.
+(function () {
+  var form = document.getElementById('aider');
+  var status = document.getElementById('help-status');
+  var submit = document.getElementById('help-submit');
+  var key = form.dataset.accessKey;
+
+  function show(msg, kind) {
+    status.textContent = msg;
+    status.className = 'form-status' + (kind ? ' is-' + kind : '');
+    status.hidden = false;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = form.elements.nom, email = form.elements.email;
+    var bad = null;
+    [name, email].forEach(function (f) { f.removeAttribute('aria-invalid'); });
+    if (!email.value.trim() || !email.checkValidity()) bad = email;
+    if (!name.value.trim()) bad = name;
+    if (bad) {
+      bad.setAttribute('aria-invalid', 'true');
+      bad.focus();
+      show(bad === name ? 'Indiquez votre nom pour qu\'on puisse vous répondre.' : 'Indiquez une adresse e-mail valide pour qu\'on puisse vous répondre.', 'error');
+      return;
+    }
+    if (!key || key.charAt(0) === '[') {
+      show('Le formulaire n\'est pas encore relié à une adresse e-mail. En attendant, contactez Virginie directement.', 'error');
+      return;
+    }
+
+    var ways = [].slice.call(form.querySelectorAll('input[name="aide"]:checked')).map(function (c) { return c.value; });
+    var payload = {
+      access_key: key,
+      subject: 'Je veux aider : ' + (ways.length ? ways.join(', ') : 'proposition') + ' (' + name.value.trim() + ')',
+      from_name: 'Site De la cour au bout du monde',
+      botcheck: form.elements.botcheck.checked,
+      nom: name.value.trim(),
+      email: email.value.trim(),
+      telephone: form.elements.telephone.value.trim(),
+      structure: form.elements.structure.value.trim(),
+      aide: ways.join(', ') || 'Non précisé',
+      message: form.elements.message.value.trim()
+    };
+
+    submit.disabled = true;
+    submit.textContent = 'Envoi…';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data.success) throw new Error(data.message);
+        form.reset();
+        show('Merci ! Votre message est bien parti. L\'équipe du projet vous recontacte rapidement.', 'ok');
+      })
+      .catch(function () {
+        show('Le message n\'a pas pu partir. Vérifiez votre connexion et réessayez, ou contactez Virginie directement.', 'error');
+      })
+      .finally(function () {
+        submit.disabled = false;
+        submit.textContent = 'Envoyer';
+      });
+  });
+})();
+</script>
+</body>
+</html>
