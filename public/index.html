@@ -117,14 +117,36 @@ p { margin: 0; }
 .brand-mark { width: 34px; height: 34px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; flex: none; }
 .brand-mark::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--sun); transform: translate(5px,-5px); }
 .brand small { display: block; font-weight: 700; font-size: 12px; color: var(--ink); letter-spacing: .04em; }
-.nav { display: flex; align-items: center; gap: 22px; }
-.nav a:not(.btn) { text-decoration: none; font-weight: 700; color: var(--navy); font-size: 15px; white-space: nowrap; text-underline-offset: 5px; }
-.nav a:not(.btn):hover { text-decoration: underline; }
-.nav .btn { padding: 11px 18px; font-size: 15px; white-space: nowrap; }
-/* Six liens tiennent sur une ligne à partir de 1150 px ; en dessous, seul le bouton de don reste */
-@media (max-width: 1150px) { .nav a:not(.btn) { display: none; } }
+.nav { display: flex; align-items: center; gap: 22px; margin-left: auto; }
+.nav a { text-decoration: none; font-weight: 700; color: var(--navy); font-size: 15px; white-space: nowrap; text-underline-offset: 5px; }
+.nav a:hover { text-decoration: underline; }
+.top-give { padding: 11px 18px; font-size: 15px; white-space: nowrap; }
+.burger { display: none; flex: none; width: 46px; height: 46px; border: 2px solid var(--navy); border-radius: 12px; background: transparent; color: var(--navy); cursor: pointer; place-items: center; padding: 0; }
+.burger span, .burger span::before, .burger span::after { display: block; width: 20px; height: 2.5px; border-radius: 2px; background: currentColor; transition: transform .2s ease, background .2s ease; }
+.burger span { position: relative; }
+.burger span::before, .burger span::after { content: ""; position: absolute; left: 0; }
+.burger span::before { top: -7px; }
+.burger span::after { top: 7px; }
+.burger[aria-expanded="true"] span { background: transparent; }
+.burger[aria-expanded="true"] span::before { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded="true"] span::after { transform: translateY(-7px) rotate(-45deg); }
+/* Six liens tiennent sur une ligne à partir de 1150 px ; en dessous, ils passent dans un menu déroulant */
+@media (max-width: 1150px) {
+  .burger { display: grid; }
+  .top-give { margin-left: auto; }
+  /* Le menu prend toute la largeur sous l'en-tête, avec les mêmes marges que le reste de la page */
+  .nav {
+    display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: 8px max(16px, env(safe-area-inset-right, 0px)) 14px max(16px, env(safe-area-inset-left, 0px));
+    background: var(--sun); border-bottom: 1px solid rgba(31,40,88,.12); box-shadow: 0 12px 20px rgba(31,40,88,.12);
+  }
+  .nav.is-open { display: flex; }
+  .nav a { font-size: 18px; padding: 13px 0; border-top: 1px solid rgba(31,40,88,.12); }
+  .nav a:first-child { border-top: 0; }
+}
 /* Sur téléphone, la barre de don en bas d'écran remplace le bouton de l'en-tête */
-@media (max-width: 760px) { .nav { display: none; } }
+@media (max-width: 760px) { .top-give { display: none; } .burger { margin-left: auto; } }
 
 /* ---------- Héros ---------- */
 .hero { position: relative; overflow: hidden; }
@@ -210,8 +232,9 @@ p { margin: 0; }
   .hero-head { gap: 16px; }
   .hero::before { width: 340px; height: 340px; top: -170px; right: -140px; }
 }
-/* Le titre tient sur trois lignes jusqu'aux petits téléphones */
-@media (max-width: 400px) { .hero h1 { font-size: 31px; } }
+/* Sur une colonne, le titre grandit avec l'écran, façon affiche : les lignes se coupent
+   et « et de la ferme », le plus long morceau insécable, remplit la largeur */
+@media (max-width: 860px) { .hero h1 { font-size: min(56px, calc((100vw - 32px) / 8.8)); } }
 @media (max-width: 560px) {
   .give-card { padding: 20px; gap: 14px; }
   .gc-goal b { font-size: 28px; }
@@ -563,15 +586,18 @@ p { margin: 0; }
       <span class="brand-mark" aria-hidden="true"></span>
       <span>De la cour au bout du monde<small>Maternelle du Grand Clos · Montargis</small></span>
     </a>
-    <nav class="nav" aria-label="Sections">
+    <nav class="nav" id="menu" aria-label="Sections">
       <a href="#projet">Le projet</a>
       <a href="#pourquoi">Pourquoi</a>
       <a href="#objectif">Objectif</a>
       <a href="#confiance">Comment ça marche</a>
       <a href="#documents">Documents</a>
       <a href="#aider">Je veux aider</a>
-      <a class="btn btn-primary" href="#donner">Faire un don</a>
     </nav>
+    <a class="btn btn-primary top-give" href="#donner">Faire un don</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <span aria-hidden="true"></span>
+    </button>
   </div>
 </header>
 
@@ -1104,6 +1130,26 @@ var eurosRonds = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: '
         window.prompt('Copiez le lien du site :', url);
       }
     });
+  });
+})();
+
+// Menu de l'en-tête sous 1150 px : se ferme au choix d'une section, avec Échap ou en touchant ailleurs
+(function () {
+  var burger = document.querySelector('.burger');
+  var menu = document.getElementById('menu');
+  if (!burger || !menu) return;
+  function setOpen(open) {
+    menu.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  }
+  burger.addEventListener('click', function () { setOpen(!menu.classList.contains('is-open')); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('is-open')) { setOpen(false); burger.focus(); }
+  });
+  document.addEventListener('click', function (e) {
+    if (!menu.contains(e.target) && !burger.contains(e.target)) setOpen(false);
   });
 })();
 
