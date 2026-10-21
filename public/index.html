@@ -76,7 +76,7 @@ h3 { font-family: var(--f-bold); }
 b, strong, label, legend, dt, .btn, .eyebrow, .pill, .brand, .nav a, .where, .who, .arrow, .deadline, .chip, .form-status, .gc-days, .link-btn { font-family: var(--f-bold); }
 /* Grands chiffres en Sniglet */
 label small, .field .opt { font-family: var(--f-body); }
-.fact b, .tier b, .tax b, .stat b, .big-96 b, .goal-top .raised, .step-no, .timeline b, .thanks b, .gc-goal b, .amount b, .gc-cost strong, .next-big { font-family: var(--f-display); font-weight: 800; }
+.fact b, .tier b, .tax b, .stat b, .big-96 b, .goal-top .raised, .step-no, .timeline b, .gc-goal b, .amount b, .gc-cost strong, .next-big { font-family: var(--f-display); font-weight: 800; }
 p { margin: 0; }
 
 .band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
@@ -428,14 +428,6 @@ p { margin: 0; }
 .qr-box { width: 168px; height: 168px; border: 2px dashed var(--ink-soft); border-radius: 14px; display: grid; place-items: center; color: var(--ink-soft); font-weight: 900; }
 .qr-card .btn { width: 100%; }
 .give .lead { color: var(--on-navy); }
-.thanks { display: grid; gap: 16px; }
-.thanks h3 { color: var(--paper); font-size: 22px; }
-.thanks ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.thanks li { background: var(--navy-2); border-radius: 14px; padding: 18px 20px; display: grid; gap: 6px; align-content: start; }
-.thanks b { font-size: 30px; color: var(--sun); line-height: 1.1; }
-.thanks li p { font-size: 15px; }
-.thanks-note { font-size: 14px; }
-@media (max-width: 760px) { .thanks ol { grid-template-columns: 1fr; } }
 .reassure { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .reassure div { display: grid; gap: 4px; padding-top: 16px; border-top: 2px solid var(--sun); }
 .reassure strong { color: var(--paper); }
@@ -847,7 +839,7 @@ p { margin: 0; }
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Soutenir le projet</span>
-        <h2>Un merci pour chaque don</h2>
+        <h2>Chaque don compte</h2>
         <p class="lead">Chaque don ouvre droit à un reçu fiscal. Collecte ouverte du 16 octobre au 24 décembre.</p>
       </div>
 
@@ -875,16 +867,6 @@ p { margin: 0; }
           <a class="btn btn-primary" href="#donner" data-trousse title="Lien de la Trousse à projets à ajouter">Donner sur la Trousse à projets</a>
           <span class="ph">[LIEN] à compléter</span>
         </div>
-      </div>
-
-      <div class="thanks">
-        <h3>Les remerciements, selon le don</h3>
-        <ol>
-          <li><b>Dès 50 €</b><p>Votre nom sur la liste des remerciements affichée à l'école.</p></li>
-          <li><b>Dès 200 €</b><p>Un message de remerciement avec la photo d'un imagier des enfants.</p></li>
-          <li><b>Dès 500 €</b><p>Une photo d'un imagier et un petit reportage photos de l'aventure des naturalistes du Grand Clos.</p></li>
-        </ol>
-        <p class="thanks-note">Chaque palier inclut les précédents. Les remerciements sont assurés par les parents élus.</p>
       </div>
 
       <div class="reassure">
@@ -921,7 +903,7 @@ p { margin: 0; }
           <div class="doc-body">
             <span class="doc-for">Pour les entreprises</span>
             <h3>Le dossier partenaires</h3>
-            <p>Le projet, le budget, le circuit de l'argent et les remerciements, pour les entreprises, commerces et clubs.</p>
+            <p>Le projet, le budget et le circuit de l'argent, pour les entreprises, commerces et clubs.</p>
             <p class="doc-meta">PDF · 7 pages · 670 Ko</p>
           </div>
           <a class="btn btn-primary" href="documents/dossier-partenaires-grand-clos.pdf" target="_blank" rel="noopener" aria-label="Télécharger le PDF : le dossier partenaires, 670 Ko"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>Télécharger le PDF</a>
@@ -965,7 +947,7 @@ p { margin: 0; }
           </dl>
           <a class="doc-link" href="documents/dossier-partenaires-grand-clos.pdf" target="_blank" rel="noopener">
             <img src="images/doc-dossier-partenaires.jpg" alt="" width="640" height="360" loading="lazy">
-            <span class="doc-link-text"><b>Télécharger le dossier partenaires</b><span>PDF · 7 pages · budget, seuils et remerciements</span></span>
+            <span class="doc-link-text"><b>Télécharger le dossier partenaires</b><span>PDF · 7 pages · budget et seuils</span></span>
             <span class="doc-link-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg></span>
           </a>
         </div>
