@@ -611,7 +611,7 @@ p { margin: 0; }
         </div>
         <div class="gc-gauge">
           <div class="gauge-track js-gauge" style="--pct: 0%"><div class="gauge-fill"></div></div>
-          <p class="gc-raised"><b class="js-raised-zero">Soyez parmi les premiers donateurs</b><span class="js-raised-some" hidden><b class="js-raised">0 €</b> collectés</span> · la visite du parc a lieu dès 2 000 €</p>
+          <p class="gc-raised"><b class="js-raised-zero">Soyez parmi les premiers donateurs</b><span class="js-raised-some" hidden><b class="js-raised">0 €</b> collectés<span class="js-donors" hidden></span></span> · la visite du parc a lieu dès 2 000 €</p>
         </div>
         <fieldset class="gc-amounts">
           <legend>Je choisis mon don</legend>
@@ -743,7 +743,7 @@ p { margin: 0; }
           <div class="gauge-track"><div class="gauge-fill"></div></div>
           <div class="gauge-legend">0 €</div>
         </div>
-        <p class="update-note">Montant relevé régulièrement sur <a href="#donner" data-trousse>la Trousse à projets</a>.</p>
+        <p class="update-note">Montant <span class="js-maj">relevé régulièrement</span> sur <a href="#donner" data-trousse>la Trousse à projets</a>.</p>
       </div>
 
       <div class="tiers">
@@ -1053,18 +1053,38 @@ var eurosRonds = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: '
   });
 })();
 
-// Jauges du héros et de l'objectif, à partir de COLLECTE
+// Jauges du héros et de l'objectif. COLLECTE_AUTO est inscrit dans la page par le Worker
+// (relevé automatique sur la Trousse) ; sans lui, on garde la valeur saisie à la main.
 (function () {
-  var pct = Math.min(100, Math.max(0, COLLECTE) / 40);
+  var auto = window.COLLECTE_AUTO;
+  var montant = auto ? Math.max(COLLECTE, auto.collecte) : COLLECTE;
+  var pct = Math.min(100, Math.max(0, montant) / 40);
   [].forEach.call(document.querySelectorAll('.js-gauge'), function (g) {
     g.style.setProperty('--pct', pct + '%');
     if (g.hasAttribute('aria-label')) {
-      g.setAttribute('aria-label', 'Jauge de collecte : ' + Math.round(COLLECTE) + ' euros sur 4 000. Seuil minimum à 2 000 euros.');
+      g.setAttribute('aria-label', 'Jauge de collecte : ' + Math.round(montant) + ' euros sur 4 000. Seuil minimum à 2 000 euros.');
     }
   });
-  [].forEach.call(document.querySelectorAll('.js-raised'), function (el) { el.textContent = eurosRonds.format(COLLECTE); });
-  [].forEach.call(document.querySelectorAll('.js-raised-some'), function (el) { el.hidden = COLLECTE <= 0; });
-  [].forEach.call(document.querySelectorAll('.js-raised-zero'), function (el) { el.hidden = COLLECTE > 0; });
+  [].forEach.call(document.querySelectorAll('.js-raised'), function (el) { el.textContent = eurosRonds.format(montant); });
+  [].forEach.call(document.querySelectorAll('.js-raised-some'), function (el) { el.hidden = montant <= 0; });
+  [].forEach.call(document.querySelectorAll('.js-raised-zero'), function (el) { el.hidden = montant > 0; });
+  if (!auto) return;
+
+  // Nombre de donateurs, si la Trousse en compte au moins un
+  [].forEach.call(document.querySelectorAll('.js-donors'), function (el) {
+    el.textContent = ' grâce à ' + auto.donateurs + (auto.donateurs > 1 ? ' donateurs' : ' donateur');
+    el.hidden = !(auto.donateurs > 0);
+  });
+
+  // Date du dernier relevé : « il y a 12 min », « il y a 3 h », sinon le jour
+  var maj = Date.parse(auto.maj);
+  if (isNaN(maj)) return;
+  var min = Math.max(0, Math.round((Date.now() - maj) / 6e4));
+  var quand = min < 1 ? 'à l\'instant'
+    : min < 60 ? 'il y a ' + min + ' min'
+    : min < 24 * 60 ? 'il y a ' + Math.round(min / 60) + ' h'
+    : 'le ' + new Date(maj).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+  [].forEach.call(document.querySelectorAll('.js-maj'), function (el) { el.textContent = 'relevé automatiquement ' + quand; });
 })();
 
 // Compte à rebours

@@ -2,9 +2,28 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "de-la-cour-au-bout-du-monde",
   "compatibility_date": "2026-10-01",
-  // Site statique : tout le contenu du dossier public/ est servi tel quel.
+  // Worker : relève le montant collecté et l'inscrit dans la page d'accueil (voir src/index.js).
+  "main": "src/index.js",
+  // Site statique : tout le contenu du dossier public/ est servi tel quel,
+  // sauf la page d'accueil et /api/*, qui passent d'abord par le Worker.
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/", "/api/*"]
+  },
+  // Dernier montant relevé. Sans « id », Wrangler crée l'espace KV au premier déploiement.
+  "kv_namespaces": [
+    { "binding": "DONNEES" }
+  ],
+  // Relevé du montant sur la Trousse à projets toutes les 30 minutes
+  "triggers": {
+    "crons": ["*/30 * * * *"]
+  },
+  // Journaux conservés 3 jours (offre gratuite) : relevés refusés, page de la Trousse changée…
+  "observability": { "enabled": true },
+  // Même adresse que TROUSSE_URL dans public/index.html et que le QR code qr-code-trousse.svg
+  "vars": {
+    "TROUSSE_URL": "https://trousseaprojets.fr/projet/24246-a-la-rencontre-des-animaux-sauvages-et-de-la-ferme"
   },
   // Adresse publique : Cloudflare crée l'enregistrement DNS et le certificat https.
   "routes": [
